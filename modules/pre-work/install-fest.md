@@ -5,7 +5,7 @@
 ###Software update
 
 **Why?**
-Let's all be using as close to the same latest version of software as possible.
+Let's all use as close to the latest version of software as possible.
 
 **How?**
 Run `softwareupdate -l` in the terminal to see all available software updates. You can install all recommended updates with `sudo softwareupdate -irv`.
@@ -24,7 +24,7 @@ The command line tools includes GCC, a compiler for the C language. This will be
 HomeBrew is a package manager. It helps us install, uninstall, and update the various languages & tools we'll be using for development.
 
 **How?**
-Run `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` to start the download.
+Run `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`to start the download.
 
 Once finished run `brew doctor` to make sure everything is working correctly.
 
@@ -41,7 +41,7 @@ Run `brew install node` in your terminal. Wait for the download to finish and ty
 
 ###For Linux Users
 
-You may use Linux in WDI as it is similar to Mac OSX (they are both UNIX-based). You may have to be more resourceful in terms of installing your tools at times as our resources are written with OSX. Don't worry OSX & Linux have more similarities than differences. DO NOT use the Windows operating system, it is not UNIX based and therefore will be much more different.
+You may use Linux in WDI as it is similar to Mac OSX (they are both UNIX-based). You may have to be more resourceful in terms of installing your tools at times as our resources are written with OSX. Don't worry, OSX & Linux have more similarities than differences. DO NOT use the Windows operating system, it is not UNIX based and therefore will be much more different.
 
 For those using Linux you should already have `apt` on your system, which is equivalent to HomeBrew and will act as your package manager. Once you update your software you many use `apt` to install node.
 
@@ -74,4 +74,3 @@ npm -v
 => [the version number you have just installed]
 
 ```
-
