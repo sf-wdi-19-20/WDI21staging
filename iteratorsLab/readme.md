@@ -4,13 +4,7 @@
 | :--- |
 | Implement iterators from scratch |
 | Write assertions to test our code |
-| Organize our functions into a library |
-
-##Learning Objectives
-
-* Implement iterators from scratch
-* Test our code with assertions
-* Use an object to organize our code
+| Organize our functions into a utility object |
 
 
 ##Keywords
@@ -19,14 +13,11 @@
 * Method
 * Assertion
 
-
 ##Existing Iterators
 
-JavaScript's `Array` comes with many built in iterators that help make our life easier as using `for` loops are clunky and unintuitive. Let's take moment to see what methods are native to an array... We can list all methods with: `Object.getOwnPropertyNames(Array.prototype)`. Not all, but many of these methods are iterators that you already know how to use. But do you know how they are built?
+JavaScript's `Array` comes with many built in iterators that help make our life easier as using `for` loops are clunky and unintuitive. Let's take moment to see what methods are native to an array... We can list all methods with: `Object.getOwnPropertyNames(Array.prototype)`.
 
-##Our Goal
-
-Using tests, we're going to implement a set of utility functions that will make our lives easier.
+That great, but why isn't there functions like `.first`, `.last`, `.min`, or `.max`? Let's implement these functions to make our lives easier down the road.
 
 ##Assertions
 
