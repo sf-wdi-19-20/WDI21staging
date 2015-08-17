@@ -6,13 +6,6 @@
 | Write assertions to test our code |
 | Organize our functions into a utility object |
 
-
-##Keywords
-
-* Callback
-* Method
-* Assertion
-
 ##Existing Iterators
 
 JavaScript's `Array` comes with many built in iterators that help make our life easier as using `for` loops are clunky and unintuitive. Let's take moment to see what methods are native to an array... We can list all methods with: `Object.getOwnPropertyNames(Array.prototype)`.
@@ -53,7 +46,7 @@ We can use this function to test the code we are about to write. If the `assert`
 Now use the below tests to infer the behavior of the functions `first`, `last`, `min`, and `max`.
 
 * First `console.log` each assertion result, with a description of what's happening, making sure it fails
-* Next write the code to make the assertion pass, aka return true
+* Next write the code to make the assertion pass (making it return true)
 * Finally move on to the next assertion and repeat
 
 *Note: It's always a good idea to write several tests. Add more if you'd like.*
