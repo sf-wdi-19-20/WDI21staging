@@ -15,54 +15,47 @@ var fruits = ["Apple", "Banana", "Cherry", "Durian", "Elderberry",
 Accessing the **first** element of an array:  
 
 ```javascript
-var first = fruits[0];
-// "Apple"
+fruits[0]; // "Apple"
 ```
 
 Accessing the **length** of an array:
 
 ```javascript
-var arrLen = fruits.length;
-// 10
+fruits.length; // 10
 ```
 Accessing the **last** element of an array:  
 
 ```javascript
-var last = fruits[fruits.length-1];
-// "Jackfruit
+fruits[fruits.length-1]; // "Jackfruit
 ```
 **Adding** an element to the **front** of an array:
 
 ```javascript
-fruits.unshift("Apricot") // add to the front
-// 11
+fruits.unshift("Apricot"); // 11
 ```
 
 **Adding** an element to the **end** of an array:  
 
 ```javascript
-fruits.push("Kiwi");
-// 11
+fruits.push("Kiwi"); // 12
 ``` 
 
 **Removing** an element from the **front** of an array:
 
 ```javascript
-fruits.shift(); // remove Apricot from the front
-// "Apricot"
+fruits.shift(); // "Apricot"
 ```
 
 **Removing** an element to the **end** of an array:  
 
 ```javascript
-var last = fruits.pop(); // remove Kiwi (from the end)
-// "Kiwi"	
+fruits.pop(); // "Kiwi"
 ``` 
 **Finding** the index of an element in an array:  
 
 ```javascript
-var jackFruitPos = fruits.indexOf("Jackfruit");
-// 9  (Jackfruit can be accessed at fruits[9])
+fruits.indexOf("Jackfruit"); // 9
+fruits[9]; // "Jackfruit"
 ```
 
 **Removing** an element in an array by index position:  
@@ -86,7 +79,7 @@ To loop through an array in a fashion similar to a for-loop traversal with the a
 
 ```javascript
 
-array.forEach( function callBack (element, index, array) {
+array.forEach(function callBack(element, index, array) {
     console.log(index + ". " + element); 
 });
 ```
@@ -94,7 +87,7 @@ array.forEach( function callBack (element, index, array) {
 Fruity Example - Make a numbered list
 
 ```javascript
-fruits.forEach( function (element, index, array) {
+fruits.forEach(function(element, index, array) {
   console.log(index + ". " + element);
 });
 /*	0. Apple 
@@ -121,29 +114,25 @@ fruits = fruits.map(function(element) {
 	
 	// if word ends in 'y', remove 'y' and add 'ies' to the end
   	var lastLetter = element[element.length -1];
-   	if( lastLetter === 'y'){ 
+   	if (lastLetter === 'y') { 
   		element = element.slice(0,element.length-1) + 'ie';
 	}
-   	element = element+'s';
- 
-  	return element;
-});
-// "Apples", "Bananas", "Cherries", "Durians", "Elderberries", "Figs", "Guavas",  
-// "Huckleberries", "Ice plants", "Jackfruits"
 
+  	return element + 's';
+});
+// [ "Apples", "Bananas", "Cherries", "Durians", "Elderberries",
+//   "Figs", "Guavas", "Huckleberries", "Ice plants", "Jackfruits"  ]
 ```
 
 Numbers Example - Square each number in an array
 
 ```javascript
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-numbers = numbers.map( function( element ) {
-	element = Math.pow(element, 2);
-
-	return element;
+numbers.map(function(element) {
+	return Math.pow(element, 2);
 });
-// numbers = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+// [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 ```
 
 ##array.reduce()##
@@ -152,11 +141,11 @@ The `reduce()` method is designed to create one single object that is the result
 Fruity Example - Return the first letter of every word in fruits concatentated into one single string:  
 
 ```javascript 
-avgLen = fruits.reduce( function(current, next, index){
-    if(index == 1) { 
+avgLen = fruits.reduce(function(current, next, index) {
+    if (index == 1) { 
     	current = current[0]; 
     }
-	return current+next[0];
+	return current + next[0];
 });
 // "ABCDEFGHIJ"
 
@@ -166,10 +155,10 @@ Numbers Example - Find the sum of all of the numbers in an array:
 ```javascript 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-sum = numbers.reduce( function(current, next){
+sum = numbers.reduce(function(current, next) {
 	return current + next; 
 });
-// sum => 55
+// sum is 55
 
 ```
 
@@ -182,12 +171,7 @@ Fruity Example - Return a list of fruit that start with vowels:
 ```javascript 
 var vowels = ["A", "E", "I", "O", "U"];
 function vowelFruit(fruit) {
-  var isVowel = vowels.indexOf(fruit[0]);
-  if (isVowel >= 0) {
-  	return true; 
-  } else { 
-  	return false;
-  }
+  return vowels.indexOf(fruit[0]) >= 0;
 }
 var vowelFruits = fruits.filter(vowelFruit);
 // ["Apple", "Elderberry", "Ice plant"]
@@ -198,7 +182,7 @@ Numbers Example - Find all even numbers within an array greater than 5:
 ```javascript 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-even = numbers.filter( function(num){
+even = numbers.filter(function(num) {
 	var isEven = num%2==0;
     var greaterThanFive = num > 5;
     return isEven && greaterThanFive;
