@@ -1,4 +1,12 @@
 #Array Methods#
+
+|Learning Objectives|
+| :--- |
+| Master the in & outs of Arrays  |
+| Leverage iterators beyond `for` loops|
+| Compare and contrast JavaScript's iterators |
+
+
 We can traverse an array of elements with a simple for-loop, but this *really* isn't the best approach to accessing and changing a list in Javascript.
 
 As per usual, Javascript has provided us with quite a few powerful built-in methods that make accessing elements in an array a relative breeze.
@@ -12,53 +20,53 @@ var fruits = ["Apple", "Banana", "Cherry", "Durian", "Elderberry",
 "Fig", "Guava", "Huckleberry", "Ice plant", "Jackfruit"];
 ```
 
-Accessing the **first** element of an array:  
+Accessing the **first** element:  
 
 ```javascript
 fruits[0]; // "Apple"
 ```
 
-Accessing the **length** of an array:
+Accessing the **length**:
 
 ```javascript
 fruits.length; // 10
 ```
-Accessing the **last** element of an array:  
+Accessing the **last** element:  
 
 ```javascript
 fruits[fruits.length-1]; // "Jackfruit
 ```
-**Adding** an element to the **front** of an array:
+**Adding** an element to the **front**:
 
 ```javascript
 fruits.unshift("Apricot"); // 11
 ```
 
-**Adding** an element to the **end** of an array:  
+**Adding** an element to the **end**:  
 
 ```javascript
 fruits.push("Kiwi"); // 12
 ``` 
 
-**Removing** an element from the **front** of an array:
+**Removing** an element from the **front**:
 
 ```javascript
 fruits.shift(); // "Apricot"
 ```
 
-**Removing** an element to the **end** of an array:  
+**Removing** an element to the **end**:  
 
 ```javascript
 fruits.pop(); // "Kiwi"
 ``` 
-**Finding** the index of an element in an array:  
+**Finding** the index of an element:  
 
 ```javascript
 fruits.indexOf("Jackfruit"); // 9
 fruits[9]; // "Jackfruit"
 ```
 
-**Removing** an element in an array by index position:  
+**Removing** an element by index position:  
   
 ```javascript
 var huckleBerryPos = fruits.indexOf("HuckleBerry");
@@ -69,17 +77,21 @@ var removedItem = fruits.splice(huckleBerryPos, 1);
 ![img](http://www.frusion.com/media/1011/fruit-row.png)
 
 
-#Traversals and Actions#
+##Callbacks##
 
-##array.forEach()##
+<!--notes on callbacks here-->
 
-To loop through an array in a fashion similar to a for-loop traversal with the ability to alter each element, a `forEach()` method is available
+##Traversals and Actions##
+
+###array.forEach()###
+
+To loop through an array with the ability to alter each element, similar to a for-loop traversal , JavaScript gives us an Array method `forEach()`
 
 **forEach function skeleton**:
 
 ```javascript
 
-array.forEach(function callBack(element, index, array) {
+array.forEach(function callBack(element, index) {
     console.log(index + ". " + element); 
 });
 ```
@@ -87,7 +99,7 @@ array.forEach(function callBack(element, index, array) {
 Fruity Example - Make a numbered list
 
 ```javascript
-fruits.forEach(function(element, index, array) {
+fruits.forEach(function(element, index) {
   console.log(index + ". " + element);
 });
 /*	0. Apple 
@@ -103,7 +115,7 @@ fruits.forEach(function(element, index, array) {
 */
 ```
      
-##array.map()##
+###array.map()###
 Similar to `forEach()`, `map()` traverses an array; this method, however, performs whatever callback function you pass into it as an argument on each element. 
 
 
@@ -135,34 +147,8 @@ numbers.map(function(element) {
 // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 ```
 
-##array.reduce()##
-The `reduce()` method is designed to create one single object that is the result of an action performed among all elements in an array.  It essentially 'reduces' the values of an array into one single element.
 
-Fruity Example - Return the first letter of every word in fruits concatentated into one single string:  
-
-```javascript 
-avgLen = fruits.reduce(function(current, next, index) {
-    if (index == 1) { 
-    	current = current[0]; 
-    }
-	return current + next[0];
-});
-// "ABCDEFGHIJ"
-
-```
-Numbers Example - Find the sum of all of the numbers in an array:
-
-```javascript 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-sum = numbers.reduce(function(current, next) {
-	return current + next; 
-});
-// sum is 55
-
-```
-
-##array.filter()##
+###array.filter()###
 With the `filter()` method you can create a *second* array filled with elements that pass certain criteria that you desginate.  This is great for creating a sub array of fruits that start with vowels, a list of even numbers from a bigger list, and so on.  
   *It's important to remember that a filter method on an array needs a `boolean` return value for the callback function you pass as an argument.*  
   
@@ -190,6 +176,34 @@ even = numbers.filter(function(num) {
 // [6, 8, 10]
 
 ```
+
+###array.reduce()###
+The `reduce()` method is designed to create one single object that is the result of an action performed among all elements in an array.  It essentially 'reduces' the values of an array into one single element.
+
+Fruity Example - Return the first letter of every word in fruits concatentated into one single string:  
+
+```javascript 
+avgLen = fruits.reduce(function(current, next, index) {
+    if (index == 1) { 
+    	current = current[0]; 
+    }
+	return current + next[0];
+});
+// "ABCDEFGHIJ"
+
+```
+Numbers Example - Find the sum of all of the numbers in an array:
+
+```javascript 
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+sum = numbers.reduce(function(current, next) {
+	return current + next; 
+});
+// sum is 55
+
+```
+
 
 
 [Here is a link to the Mozilla Developer Network page on Javascript Arrays and prototype methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
