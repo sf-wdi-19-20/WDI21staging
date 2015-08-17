@@ -90,7 +90,7 @@ assert([99,-1, Infinity, 0, 99], Infinity, max)
 
 ###Methods
 
-The functions we've made are great but not organize in any way. Notice JavaScript doesn't have many global functions. For example `forEach` is a method of an `Array` and doesn't live on it's own.
+The functions we've made are great but not organized in any way. Notice JavaScript doesn't have many global functions. For example `forEach` is a method of an `Array` and doesn't live on it's own.
 
 This is a good design principal to avoid cluttering the global namespace and organize your code. Below we can see two **methods**: `greet` and `useTheForce`, and two **attributes** `firstName` and `lastName`.
 
