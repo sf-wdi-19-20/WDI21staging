@@ -11,7 +11,7 @@
 
 * Thus far, we've been coding information (or data) directly into our HTML file, but we need a way to dynamically display that data in a manner that separates html from javascript. In other words we shouldn't be writing html in our javascript, that is GROSS!
 
-* We'll use <a href="http://underscorejs.org/#template" target="_blank">Underscore's templating engine</a> to dynamically display data to our HTML.
+* We'll use [Underscore's](http://underscorejs.org/) [templating functionality](http://underscorejs.org/#template) to dynamically display data to our HTML.  is a JavaScript library that provides a bunch of utility to help you manipulate and display data. It includes a function to help us template, which we'll be taking advantage of.
 
 ## Why use templating?
 
@@ -28,10 +28,6 @@
 * Maximize code reusability and maintainability.
 
 * If you need to change your HTML structure for elements you're creating and displaying (i.e. adding an additional class name to your to-do tasks), all you have to do is change the template!
-
-## Underscore.js
-
-[Underscore.js](http://underscorejs.org/) is a JavaScript library that provides a bunch of utility to help you manipulate and display data. It includes a function to help us template, which we'll be taking advantage of.
 
 ## Setup
 
