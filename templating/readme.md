@@ -75,4 +75,4 @@ User should be able to...
 
 ## Bonus
 
-Refactor your Giphy app to use a template
+Refactor your [Giffaw app](https://github.com/sf-wdi-21/giffaw) to use a template.
