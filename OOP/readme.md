@@ -70,27 +70,10 @@ Declaring variables and defining them as portions of a larger object helps us cr
 
 *We can assume that an Object is a collection of properties (key & value pairs) that all have some sort of relationship and are connected logically to one another.*  
 
-In the example above, our `data` object contains information about our particular class, including the students, classroom number, location, and course ID.  
-
-Here are some things that logically would fit in with the other object properties:  
-
-- address of our building
-- floor number 
-- an array of instructors 
-	- individual names 
-	- github usernames as well.  
-
-Here are some things that have no real reason to be included in an object about our class:
-
-- the autobiographical works of Mark Twain
-- the website url to AutoDesk
-- A list of frequent fliers who take the plane from San Francisco to Los Angeles every Thursday at 7:40AM
-
-
 ###Quick Challenge
 - Make a copy of `data.js` and rename it to `enhancedData.js`
-- Add the above properties that logically fit into an object describing our class (address, floor number, and a list of instructors and their individual data properties)
-- try to access your new data properties from the console.  
+- Add some properties that logically fit into an object describing our class (address, floor number, and a list of instructors.
+- Try to access your new data properties from the console to make sure they work.
 
 If everything worked out, you should have a fully functioning data object, only now with even MORE properties with us to play with!  
 
