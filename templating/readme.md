@@ -13,6 +13,10 @@
 
 * We'll use [Underscore's](http://underscorejs.org/) [templating functionality](http://underscorejs.org/#template) to dynamically display data to our HTML.  is a JavaScript library that provides a bunch of utility to help you manipulate and display data. It includes a function to help us template, which we'll be taking advantage of.
 
+##A Helpful Metaphor
+
+Think of a **template** as a *mold*, the **parameter** passed in as *plastic* poured in, and the resulting html string that is generated as a *cast*. 
+
 ## Why use templating?
 
 * Separate presentation (html & css) from your business logic (javascript). Remember this?
@@ -32,10 +36,6 @@
 ## Setup
 
 Fork & clone this [repo](https://github.com/sf-wdi-21/underscore_templating)
-
-##Metaphor
-
-Think of a **template** as a *mold*, the **parameter** passed in as *plastic* poured in, and the resulting html string that is generated as a *cast*. 
 
 ##What is happening in `app.js`?
 
