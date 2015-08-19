@@ -37,7 +37,7 @@ Think of a **template** as a *mold*, the **parameter** passed in as *plastic* po
 
 Fork & clone this [repo](https://github.com/sf-wdi-21/underscore_templating)
 
-##What is happening in `app.js`?
+## What is happening in `app.js`?
 
 **Select something to mold**
 
@@ -67,12 +67,12 @@ Fork & clone this [repo](https://github.com/sf-wdi-21/underscore_templating)
 
 Use underscore templating to accomplish the following user stories:
 
-###User stories
+### User stories
 User should be able to...
 
 * See all the octocats on the page
 * Click on a profile picture next to each octocat's name that will take them to that octocat's Github account
 
-## Bonus
+### Bonus
 
 Refactor your [Giffaw app](https://github.com/sf-wdi-21/giffaw) to use a template.
