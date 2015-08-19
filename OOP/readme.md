@@ -60,15 +60,15 @@ To access this property, we can use dot-notation or bracket-notation on the key 
  
 `GA` has the value `General Assembly`.  
  
-To access an array withini an object,  the method is similar to accessing any other property.  The property `students` is an array of Objects.  To access that array and assign it to a variable, we simply perform the following:
+To access an array within an object,  the method is similar to accessing any other property.  The property `students` is an array of Objects.  To access that array and assign it to a variable, we simply perform the following:
  
  ```javascript
  var studentArray = data.students //students
  ```
-The `data.students` array is now accessible by using `studentArray` instead.
+The `data.students` array is now accessible  by using `studentArray` instead.
 Declaring variables and defining them as portions of a larger object helps us create readable and followable code.  
 
-*We can assume that an Object is a colleciton of properties (key & value pairs) that all have some sort of relationship and are connected logically to one another.*  
+*We can assume that an Object is a collection of properties (key & value pairs) that all have some sort of relationship and are connected logically to one another.*  
 
 In the example above, our `data` object contains information about our particular class, including the students, classroom number, location, and course ID.  
 
@@ -84,7 +84,7 @@ Here are some things that have no real reason to be included in an object about 
 
 - the autobiographical works of Mark Twain
 - the website url to AutoDesk
-- A list of frequent fliers who take the plane from San Francisco to Los Angeles every THursday at 7:40AM
+- A list of frequent fliers who take the plane from San Francisco to Los Angeles every Thursday at 7:40AM
 
 
 ###Quick Challenge
@@ -140,7 +140,7 @@ var petalCount = Rose.petals // 32
 var smellsNice = Rose.smellsPretty //true
 ```
 
-If we wanted to create yet ANOTHER flower, all we have to do is call our function just like we did above.  This time, lets make an oject called `Lily`.
+If we wanted to create yet ANOTHER flower, all we have to do is call our function just like we did above.  This time, lets make an object called `Lily`.
 
 ```javascript
 var Lily = new flower();
@@ -203,7 +203,7 @@ function flower(){
     	if (answer) {
     		return 'This flower smells amazing!';
     	} else {
-    		return 'What a noxoius weed!';
+    		return 'What a noxious weed!';
     	}
     };
 }
@@ -223,7 +223,7 @@ function flower(){
     	if (answer) {
     		return 'This flower smells amazing!';
     	} else {
-    		return 'What a noxoius weed!';
+    		return 'What a noxious weed!';
     	}
     };
     // Demonstrates use of local object variables
@@ -257,7 +257,7 @@ var flower = {
         if (answer) {
             return 'This flower smells amazing!';
         } else {
-            return 'What a noxoius weed!';
+            return 'What a noxious weed!';
         }
     },
     // Demonstrates use of local object variables
