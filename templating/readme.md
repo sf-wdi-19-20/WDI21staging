@@ -35,7 +35,7 @@ Think of a **template** as a *mold*, the **parameter** passed in as *plastic* po
 
 ## Setup
 
-Fork & clone this [repo](https://github.com/sf-wdi-21/underscore_templating)
+Fork & clone this [repo](https://github.com/sf-wdi-21/underscore_templating) to get started!
 
 ## What is happening in `app.js`?
 
