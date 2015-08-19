@@ -18,7 +18,7 @@
 * Separate presentation (html & css) from your business logic (javascript). Remember this?
 
   ```js
-  $('#todo-list').append('<li class="student">' + firstName + ' - ' + lastName + '</li>');
+  $('#student-list').append('<li class="student">' + firstName + ' - ' + lastName + '</li>');
   ```
 
 * When appending new HTML elements to the page, the string of elements to append will only get longer as you begin to write more complex statements.
