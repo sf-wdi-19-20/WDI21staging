@@ -91,7 +91,7 @@ These objects still have all of the methods and abilities of the previous object
 made.  The main difference is that they can be customized with specific properties
 at the time of object instantiation.
 
-<h3>Challenge</h3>
+<h3>Group Challenge</h3>
 Create a custom Flower object based on the flower on your table.  Decided amongst your
 tablemates the type of flower, the flower's main color, number of petals, and whether or not it smells pretty.
 Think up some other possible properties.  We need more properties!  Properties are great!  
@@ -100,6 +100,15 @@ Think up some other possible properties.  We need more properties!  Properties a
 Now we should have at least six individual and unique Flower objects we can use.
 Lets find the best new properties and integrate them into our class-wide Flower object.
 
+<h3>Cross-Pollination Challenge </h3
+Now that we are awesome Flower experts, lets try our hand at cross-pollinating two flower objects to create an
+entirely **NEW** Flower object!  
+- Create a method called crossPollinate
+- The method will have another Flower object as a parameter.  
+- Return a new Flower. Make the Flower's color a mix of both 'parent' colors. (i.e. red, yellow = "red-yellow") We don't care about the color wheel.
+- Make the new petal count an average between the two parents' petal counts.
+- The smellPretty gene is recessive unfortunately. This means that a flower will smell pretty IF and only IF both
+flowers smell pretty.  
 
 <h3>Uber Challenge</h3>
 Create a method within the Flower object that will render a description of your flower 
