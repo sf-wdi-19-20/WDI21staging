@@ -86,9 +86,78 @@ Tip: Chances are you'll spell something in the path wrong, so check your chrome 
 
 [More here](https://github.com/wdi-sf-fall/notes/blob/master/week_01_fundamentals/day_2_productivity_htmlcssbootstrap/dusk_html_css%20and%20bootstrap/readme.md)
 
-###The Grid System
+###A Grid System
 
-Grids enable you to layout your html content in a structured manner.
+A grid enables you to layout your html content in a structured manner.
+
+The majority of websites use some sort of grid-system. Bootstrap comes with a grid-system built in, but it's easily to create your own.
+
+**How could we create our own?**
+
+All your content will live inside a column which in turn exists inside a row. Columns are typically a fraction of twelve as it's a very divisible number. 
+
+Below, the orange marks represent distinct rows and we are using a grid with twelve columns.
+
+![grid](imgs/grid.png)
+
+You can see the top row has an element inside of it that takes up all twelve columns, while the bottom row has two elements inside of it that each take up 6 columns.
+
+**How could we build it?** 
+
+Given we want to build a 12-column grid system we would have to consider 12 of 12 columns 100% of the page, 6 of 12 columns 50%, 4 of 12 30%, etc. Here's an example implimentation below.
+
+```css
+.column-12 {
+    width: 100%;
+}
+
+.column-11 {
+    width: 91.53;
+}
+
+.column-10 {
+    width: 83.07%;
+}
+
+.column-9 {
+    width: 74.6%;
+}
+
+.column-8 {
+    width: 66.13%;
+}
+
+.column-7 {
+    width: 57.67%;
+}
+
+.column-6 {
+    width: 49.2%;
+}
+
+.column-5 {
+    width: 40.73%;
+}
+
+.column-4 {
+    width: 32.27%;
+}
+
+.column-3 {
+    width: 23.8%;
+}
+
+.column-2 {
+    width: 15.33%;
+}
+
+.column-1 {
+    width: 6.87%;
+}
+```
+
+**Responsive Nature**
+ 
 
 ##Challenge: Mockups
 
