@@ -1,10 +1,10 @@
-#Bower & Bootstrap
+#Front-End Productivity w/ Bootstrap & Bower
 
 ###Learning Objectives
 
 * Use Bower to require Bootstrap in your project
 * Understand and impliment a grid system
-* Design html pages based on several mockups
+* Design html pages with the aid of mockups & bootstrap
 
 ##What is Bootstrap?
 
@@ -84,8 +84,6 @@ Tip: Chances are you'll spell something in the path wrong, so check your chrome 
 
 ##Using Bootstrap
 
-[More here](https://github.com/wdi-sf-fall/notes/blob/master/week_01_fundamentals/day_2_productivity_htmlcssbootstrap/dusk_html_css%20and%20bootstrap/readme.md)
-
 ###A Grid System
 
 A grid enables you to layout your html content in a structured manner.
@@ -151,29 +149,11 @@ Given we want to build a 12-column grid system we would have to consider 12 of 1
 What percentage would you have to make the width for a div that took up 3 columns (.column-3)? How about 2 & 1 (.column-2, .column-1)?
 
 ###Responsiveness
-
+MORE
 
 ##Mockups
 
-We'll be coding up a few mockups using Bootstrap.
-
-###Setup
-
-In the `mockups` directory you can find three images that you will be coding up.
-
-Tip: If you need placeholder images try [placekitten](https://placekitten.com/)
-
-Find 
-
-FIXME
-[Here](https://github.com/wdi-sf-fall/bootstrap-lab/tree/master)
-
-###Option 1
-
-###Option 2
-
-###Option 3
-
+We'll be coding up a few mockups using Bootstrap. Fork and clone [this repo]() to get started.
 
 ##Solutions
 
@@ -221,13 +201,6 @@ Once you import jQuery, Underscore, and Bootstrap the resulting html file should
     width: 6.87%;
 }
 ```
-
-###Mockups
-
-FIXME
-[Here](https://github.com/wdi-sf-fall/bootstrap-lab/tree/solution)
-
-
 
 
 
