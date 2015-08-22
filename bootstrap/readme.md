@@ -1,14 +1,14 @@
-#Front-End Productivity w/ Bootstrap & Bower
+#Front-end Productivity w/ Bootstrap & Bower
 
 ###Learning Objectives
 
 * Use Bower to require Bootstrap in your project
 * Understand and impliment a grid system
-* Design html pages with the aid of mockups & bootstrap
+* Design html pages with the aid of bootstrap & mockups
 
 ##What is Bootstrap?
 
-[Bootstrap]() is a collection of CSS classes and JavaScript functions that enable us build sleek & stylish websites quickly.
+Created by Twitter, [Bootstrap](http://getbootstrap.com/) is a collection of CSS classes and JavaScript functions that enable us build sleek & stylish websites quickly.
 
 ##Bower can make our life easier
 
@@ -149,11 +149,11 @@ Given we want to build a 12-column grid system we would have to consider 12 of 1
 What percentage would you have to make the width for a div that took up 3 columns (.column-3)? How about 2 & 1 (.column-2, .column-1)?
 
 ###Responsiveness
-MORE
+
 
 ##Mockups
 
-We'll be coding up a few mockups using Bootstrap. Fork and clone [this repo]() to get started.
+We'll be coding up a few mockups using Bootstrap. Fork and clone [this repo](https://github.com/sf-wdi-21/bootstrap_mockups) to get started.
 
 ##Solutions
 
@@ -201,9 +201,6 @@ Once you import jQuery, Underscore, and Bootstrap the resulting html file should
     width: 6.87%;
 }
 ```
-
-
-
 
 
 
