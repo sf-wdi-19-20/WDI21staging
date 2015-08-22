@@ -3,7 +3,7 @@
 ###Learning Objectives
 
 * Use Bower to require Bootstrap in your project
-* Understand and impliment a grid system
+* Understand and implement a grid system
 * Design html pages with the aid of bootstrap & mockups
 
 ##What is Bootstrap?
@@ -12,7 +12,7 @@ Created by Twitter, [Bootstrap](http://getbootstrap.com/) is a collection of CSS
 
 ##Bower can make our life easier
 
-Bower is a tool that helps us find, download, and manage the numberous javascript & css libraries you frequently use in html your. 
+Bower is a tool that helps us find, download, and manage the numerous javascript & css libraries you frequently use in html your. 
 
 jQuery, Underscore, Bootstrap, etc are all libraries we may want to add to our project. It can be a hassle to go searching around to find the where each one lives when we are linking them to our html page. Instead let's use **Bower**, a library management tool, which will bring them to us!
 
@@ -54,9 +54,9 @@ Let's now grab a few example dependencies: jQuery, Underscore, and Bootstrap.
 bower install jquery underscore bootstrap
 ```
 
-*Note: we can install muliple files at once by seperating their names with spaces, nifty!*
+*Note: we can install multiple files at once by separating their names with spaces, nifty!*
 
-You'll notice you now have a `bower_compents` directory, which inside you'll find a directy for jQuery, Underscore and Bootstrap.
+You'll notice you now have a `bower_compents` directory, which inside you'll find a directly for jQuery, Underscore and Bootstrap.
 
 Inside of each of these folders you'll see a bunch of files. Don't worry. The file with the name of the library is probably the main one. For example `/underscore/underscore.js` is the only file you'll use for Underscore. If it not readily apparent you may need to look inside a `dist` (for distribution) directory to find what you're looking for.
 
@@ -102,7 +102,7 @@ You can see the top row has an element inside of it that takes up all twelve col
 
 **How could we build it?** 
 
-Given we want to build a 12-column grid system we would have to consider 12 of 12 columns 100% of the page, 6 of 12 columns 50%, 4 of 12 30%, etc. Here's an example implimentation below.
+Given we want to build a 12-column grid system we would have to consider 12 of 12 columns 100% of the page, 6 of 12 columns 50%, 4 of 12 30%, etc. Here's an example implementation below.
 
 ```css
 .column-12 {
@@ -150,11 +150,23 @@ What percentage would you have to make the width for a div that took up 3 column
 
 ###Responsiveness
 
+Bootstraps grid system is very similar to what we have just implemented aside for one thing. It is also responsive.
+
+Websites that are designed responsively adjust to different screen sizes. Media queries and percentages are key to designing responsive sites, and that's just how bootstrap does it!
+
+When telling an html element how many columns it can take up, we also tell it at what screen size. For example if I wanted an element to be full screen at a small screen size, but half screen at a large screen size I could give it the two Bootstrap classes `.col-sm-12` & `.col-lg-6`. Under the hood bootstrap leverages media queries in each of these classes to apply to different screen sizes. Here a list of the default screen size options. 
+
+* col-xs-* =< 768px
+* col-sm-* =< 992px
+* col-md-* =< 1200px
+* col-lg-* >= 1200px
 
 ##Mockups
 
 We'll be coding up a few mockups using Bootstrap. Fork and clone [this repo](https://github.com/sf-wdi-21/bootstrap_mockups) to get started.
 
+<hr>
+<hr>
 ##Solutions
 
 ###Require the libraries
@@ -201,22 +213,3 @@ Once you import jQuery, Underscore, and Bootstrap the resulting html file should
     width: 6.87%;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
