@@ -143,23 +143,27 @@ Given we want to build a 12-column grid system we would have to consider 12 of 1
     width: 32.27%;
 }
 
-.column-3 {
-    width: 23.8%;
-}
-
-.column-2 {
-    width: 15.33%;
-}
-
-.column-1 {
-    width: 6.87%;
-}
+...
 ```
 
-**Responsive Nature**
- 
+###Challenge: Grids
 
-##Challenge: Mockups
+What percentage would you have to make the width for a div that took up 3 columns (.column-3)? How about 2 & 1 (.column-2, .column-1)?
+
+###Responsiveness
+
+
+##Mockups
+
+We'll be coding up a few mockups using Bootstrap.
+
+###Setup
+
+In the `mockups` directory you can find three images that you will be coding up.
+
+Tip: If you need placeholder images try [placekitten](https://placekitten.com/)
+
+Find 
 
 FIXME
 [Here](https://github.com/wdi-sf-fall/bootstrap-lab/tree/master)
@@ -173,7 +177,7 @@ FIXME
 
 ##Solutions
 
-##Solution: Require the libraries
+###Require the libraries
 
 Once you import jQuery, Underscore, and Bootstrap the resulting html file should look similar to:
 
@@ -202,7 +206,23 @@ Once you import jQuery, Underscore, and Bootstrap the resulting html file should
 </html>
 ```
 
-###Solution: Lab
+###Grids
+
+```
+.column-3 {
+    width: 23.8%;
+}
+
+.column-2 {
+    width: 15.33%;
+}
+
+.column-1 {
+    width: 6.87%;
+}
+```
+
+###Mockups
 
 FIXME
 [Here](https://github.com/wdi-sf-fall/bootstrap-lab/tree/solution)
