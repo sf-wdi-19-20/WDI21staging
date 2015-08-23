@@ -1,0 +1,53 @@
+ORM Pony
+
+
+mongo != mongoose
+next(err, result)
+ 
+db.user.create({}, next)
+db.user.find_by_id("", next)
+db.user.destroy()
+C
+R
+U
+D
+
+objects always have _id: 0
+					_ts: 
+
+function Model(name){
+	
+	this.data = [];
+	this.type = name;
+
+}
+
+M.prototype.create(Object, callback){
+	Object._id = this.data.length;
+	this.data.push(Object);
+	callback(null, Object);// return object is truthy
+}
+
+M.prototype.findByIndex(Oject ){
+	
+}
+
+M.prototype.find( q, ..){
+	vare res = this.data.map(function(obj){
+		this.data.map(function(object)){
+			for(key in q){
+				if (object[key]!== q[key]){
+					return false
+				}
+			}
+		}
+		
+		return Object;	
+	});
+	if(res{ CB(nul, res);}){}
+}
+
+db.user = new Model("User");
+
+
+Testing with Jasmine?
