@@ -1,41 +1,31 @@
-function getTimeStamp() {
-    var now = new Date();
-    return parseInt(((now.getMonth() + 1) + '' +
-            (now.getDate()) + '' +
-             now.getFullYear() + "" +
-             now.getHours() + '' +
-             ((now.getMinutes() < 10)
-                 ? ("0" + now.getMinutes())
-                 : (now.getMinutes())) + '' +
-             ((now.getSeconds() < 10)
-                 ? ("0" + now.getSeconds())
-                 : (now.getSeconds()))));
-}
-
-
 function Model(name){
   this.type  = name;
   this.data = [];
   this._id = 0;
 }
-Model.prototype.create(object){
+
+
+
+Model.prototype = {
+
+  create : function (object){
     var object_container = {};
     object_container._id = this._id++;
-    object_container._ts = getTimeStamp();
-    object_container._actv = true;
+    object_container._ts = Date.now();
     object_container.data = object;
     this.data.push(object_container);
-  }
+    return object_container;
+  },
 
-  this.find_by_id = function(object_id){
-  return this.data.filter( function (object) {
+  find_by_id : function(object_id){
+    return this.data.filter( function (object) {
       if(object._id === object_id){
         return object;
       }
     });
-  }
+  },
 
-  this.delete = function(object_id) {
+  delete : function(object_id) {
     var pos, marked;
     this.data.forEach( function (object, index) {
       if(object._id === object_id){
@@ -45,9 +35,9 @@ Model.prototype.create(object){
     });
     this.data.splice(pos,1);
     return marked;
-  }
+  },
 
-  this.update = function(object_id, update_object) {
+  update : function(object_id, update_object) {
     var update;
     this.data.forEach( function (object) {
       if(object._id === object_id){
@@ -59,22 +49,34 @@ Model.prototype.create(object){
   }
 }
 
-var user = new Model("user");
+/* Instantiate Model object */
+//var user = new Model("user");
 
-user.insert({first_name: "Stanley", last_name: "Steemer"});
-user.insert({first_name: "Action", last_name: "Bronson"});
-user.insert({first_name: "Jillian", last_name: "Murphy"});
-user.insert({first_name: "Nichole", last_name: "DeJarden"});
+/* Create objects */
+// [
+//   {first_name: "Mister", last_name: "Robot"},
+//   {first_name: "Stanley", last_name: "Steemer"},
+//   {first_name: "Action", last_name: "Bronson"},
+//   {first_name: "Jillian", last_name: "Murphy"},
+//   {first_name: "Nichole", last_name: "DeJarden"}
+// ].forEach( function(person) {
+//   user.create(person);
+// });
 
-// var found = user.find_by_id(3);
-// console.log("Searched",found);
+/* Find object by id */
+//var found = user.find_by_id(3);
+//console.log("Searched:\n", found);
 
-// var deleted = user.delete(1);
+/* Delete object */
+//var deleted = user.delete(1);
 
-user.insert({first_name: "Billy", last_name: "Bragg"});
-// console.log("Deleted", deleted);
+/* Create object, Show continuation of id scheme after delete*/
+//user.create({first_name: "Billy", last_name: "Bragg"});
+//console.log("Deleted:\n", deleted);
 
-// var updated = user.update(1, {first_name: "Joey", last_name: "Michaels"});
-// console.log("Updated", updated);
+/* Update object properties */
+//var updated = user.update(1, {first_name: "Joey", last_name: "Michaels"});
+//console.log("Updated:\n", updated);
 
-// console.log(user);
+/* Display data content */
+//console.log(user);
