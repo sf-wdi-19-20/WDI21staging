@@ -9,29 +9,29 @@ function Model(name){
 Model.prototype = {
 
     create : function (object, callback){
-        var object_container = {};
-        object_container._id = this._id++;
-        object_container._ts = Date.now();
-        object_container.data = object;
-        this.data.push(object_container);
-        return callback(object_container);
+        var objectContainer = {};
+        objectContainer._id = this._id++;
+        objectContainer._ts = Date.now();
+        objectContainer.data = object;
+        this.data.push(objectContainer);
+        return callback(objectContainer);
     },
 
-    find_by_id : function(object_id, callback){
+    find_by_id : function(objectId, callback){
         var found;
         this.data.forEach( function (object) {
-          if(object._id === object_id){
+          if(object._id === objectId){
             found = callback(object);
           }
         });
         return found;
     },
 
-    update : function(object_id, update_object, callback) {
+    update : function(objectId, updateObject, callback) {
         var update;
         this.data.forEach( function (object) {
-          if(object._id === object_id){
-            object.data = update_object;
+          if(object._id === objectId){
+            object.data = updateObject;
             update = object;
           }
         });
@@ -39,10 +39,10 @@ Model.prototype = {
       
     },
 
-    delete : function(object_id, callback) {
+    delete : function(objectId, callback) {
         var pos, marked;
         this.data.forEach( function (object, index) {
-          if(object._id === object_id){
+          if(object._id === objectId){
             marked = object;
             pos = index;
           }
@@ -90,6 +90,7 @@ var updated = user.update(2, {first_name: "Joey", last_name: "Michaels"});
 user.create({first_name: "Billy", last_name: "Bragg"}, function(person){
     return person;
   });
+
 
 /* Display data content */
 console.log(user.data);
