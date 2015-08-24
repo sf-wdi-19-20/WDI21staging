@@ -91,6 +91,5 @@ user.create({first_name: "Billy", last_name: "Bragg"}, function(person){
     return person;
   });
 
-
 /* Display data content */
 console.log(user.data);
