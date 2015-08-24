@@ -28,7 +28,7 @@ M.prototype.create(Object, callback){
 	callback(null, Object);// return object is truthy
 }
 
-M.prototype.findByIndex(Oject ){
+M.prototype.findByIndex(Object ){
 	
 }
 
