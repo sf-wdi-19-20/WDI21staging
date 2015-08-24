@@ -8,20 +8,20 @@ function Model(name){
 
 Model.prototype = {
 
-    create : function (object, calback){
+    create : function (object, callback){
         var object_container = {};
         object_container._id = this._id++;
         object_container._ts = Date.now();
         object_container.data = object;
         this.data.push(object_container);
-        return calback(object_container);
+        return callback(object_container);
     },
 
-    find_by_id : function(object_id, calback){
+    find_by_id : function(object_id, callback){
         var found;
         this.data.forEach( function (object) {
           if(object._id === object_id){
-            found = calback(object);
+            found = callback(object);
           }
         });
         return found;
