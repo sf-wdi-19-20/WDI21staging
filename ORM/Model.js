@@ -12,12 +12,12 @@ Model.prototype = {
         var objectContainer = {};
         objectContainer._id = this._id++;
         objectContainer._ts = Date.now();
-        objectContainer.data = object;
+        objectContainer.subData = object;
         this.data.push(objectContainer);
         return callback(objectContainer);
     },
 
-    find_by_id : function(objectId, callback){
+    findByID : function(objectId, callback){
         var found;
         this.data.forEach( function (object) {
           if(object._id === objectId){
@@ -29,21 +29,21 @@ Model.prototype = {
 
     update : function(objectId, updateObject, callback) {
         var update;
-        this.data.forEach( function (object) {
-          if(object._id === objectId){
-            object.data = updateObject;
-            update = object;
+        this.data.forEach( function (objectContainer) {
+          if(objectContainer._id === objectId){
+            objectContainer.subData = updateObject;
+            update = objectContainer;
           }
         });
         return update;
-      
+
     },
 
     delete : function(objectId, callback) {
         var pos, marked;
-        this.data.forEach( function (object, index) {
-          if(object._id === objectId){
-            marked = object;
+        this.data.forEach( function (objectContainer, index) {
+          if(objectContainer._id === objectId){
+            marked = objectContainer;
             pos = index;
           }
         });
@@ -70,21 +70,22 @@ var user = new Model("user");
 
 
 /* Find object by id */
-var found = user.find_by_id(3, function(success) {
+var found = user.findByID(3, function(success) {
     return success;
 });
-//console.log("Searched:\n", found);
+console.log("FounByID:\n", found);
 
 
 /* Delete object */
 var deleted = user.delete(1, function(success) {
     return success;
 });
+console.log("Deleted:\n",deleted);
 
 /* Update object properties */
 
 var updated = user.update(2, {first_name: "Joey", last_name: "Michaels"});
-
+console.log("Updated:\n", updated);
 
 /* Create object, Show continuation of id scheme after delete*/
 user.create({first_name: "Billy", last_name: "Bragg"}, function(person){
