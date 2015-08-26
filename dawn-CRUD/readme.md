@@ -10,6 +10,8 @@
 
 ##First things first:  Install Party!
 
+####Caution: At this point, I urge you to simply read and absorb the information provided to see the basic patterns of creating and implementing databases. You do not need to create a new node project to successfully learn from tonight's readings. We'll go over this at a comfortable pace tomorrow :)
+
 We need to use brew to install our new **MongoDB** database system!
 
 From the console:
