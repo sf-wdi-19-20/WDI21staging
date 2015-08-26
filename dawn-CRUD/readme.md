@@ -13,17 +13,26 @@
 We need to use brew to install our new **MongoDB** database system!
 
 From the console:
-```brew install mongodb```
+
+```
+brew install mongodb
+```
 
 Now we need to create a directory for **MongoDB** to save and store data.
 
 From the console: 
-```sudo mkdir -p /data/db```
 
-Let's ensure that the folder permissions allow us to read and write to our newly made diretory.
+```
+sudo mkdir -p /data/db
+```
+
+Let's ensure that the folder permissions allow us to read and write to our newly made directory.
 
 From the console:
-```sudo chown -R $USER	/data/db```
+
+```
+sudo chown -R $USER	/data/db
+```
 
 
 ##Terminology:
@@ -47,8 +56,18 @@ From the console:
 	```
 *With the above Schema, we can expect all of our Address Book entries would have a first name, last name, address, and email address in the form of Strings.  We can count on the phoneNumber to always be accepted, stored, and returned as a number.  Lastly, the boolean value of Professional Contact will always be a `true` or `false`*
 
+- **Model**: A model is a Schema that has been 'activated' with real data and is performing actions such as reading, saving, updating, etc.
+
+##Schema vs. Model
+
+>"In mongoose, a schema represents the structure of a particular document, either completely or just a portion of the document. It's a way to express expected properties and values as well as constraints and indexes. A model defines a programming interface for interacting with the database (read, insert, update, etc). So a schema answers "what will the data in this collection look like?" and a model provides functionality like "Are there any records matching this query?" or "Add a new document to the collection". ""
+
+-[Peter Lyons Apr 8 '14 at 23:53](http://stackoverflow.com/a/22950402)
+
+
+
 ##RDBMS vs noSQL
-A great analogy from a fellow StackOverflower:
+A great analogy from a fellow StackOverflow:
 > "NoSQL databases store information like you would recipes in a book. When you want to know how to make a cake, you go to that recipe, and all of the information about how to make that cake (ingredients, preparation, mixing, baking, finishing, etc.) are all on that one page.
 > 
 > SQL is like shopping for the ingredients for the recipe. In order to get all of your ingredients into your cart, you have to go to many different aisles to get each ingredient. When you are done shopping, your grocery cart will be full of all the ingredients you had to run around and collect.
@@ -59,7 +78,9 @@ A great analogy from a fellow StackOverflower:
 
 
 ##Getting started with our own database!
-Head over to our app folder and we will istall Mongoose via npm.   Mongoose is a Object-relational mapping middleware that enables us to easily model objects and interact with MongoDB.  
+####Caution: At this point, I urge you to simply read and absorb the information provided to see the basic patterns of creating and implementing databases.  You do not need to create a new node project to successfully learn from tonight's readings.  We'll go over this at a comfortable pace tomorrow :)
+
+Head over to our app folder and we will install Mongoose via npm.   Mongoose is a Object-relational mapping middleware that enables us to easily model objects and interact with MongoDB.  
 
 From the console:  
 
@@ -108,55 +129,102 @@ var Book = mongoose.model('Book', BookSchema);
 
 [Here is a link to all of the different datatypes we can use in a Schema](http://mongoosejs.com/docs/schematypes.html)
 
-Building and Creating Documents
+###Building and Creating Documents
 
-A MongoDB Document is the entry of of data stored in MongoDB; Documents are analogous to JSON objects but exist in the database in a more type-rich format known as BSON (binary-JSON).
+A MongoDB *Document* is the entry of data stored in MongoDB; Documents are analogous to JSON objects but exist in the database in a more type-rich format known as BSON (binary-JSON).
 
-If you want to build up a new Book you can just do the following:
+If you want to build up a new `Book` you can just do the following:
 
+```javascript
 var book = new Book({title: "Alice's Adventures In Wonderland"});
+```
+
 Then you can play with it.
 
+```javascript
 book.author = "Lewis Carroll";
-This is called building as you're playing with an object that can be saved to the database, but doesn't exist there yet.
+```
+
+This is called *building as you're playing* with an object that can be saved to the database, but doesn't exist there yet.
 
 Once you're done building you can save the book.
 
+```javascript
 book.save()
+```
+
 If you want to build & save in one step you can use create.
 
+```javascript
 Book.create({title: "The Giver"}, function (err, book) {
   console.log(book);
 });
-Removing
+```
 
-remove
-findByIdAndRemove
-Reading
+###Removing
+Removing a Document is as simple as Building and Creating.
+
+Using the remove method:
+
+```javascript
+Book.remove({ title: "The Giver" }, function(err, book) {
+    if (!err) return console.log(err);
+    
+    console.log("removal of " + book.title + " successful.")
+});
+```
+Other removal methods include: 
+
+```javascript
+findByIdAndRemove();
+findOneAndRemove();
+	
+```
+
+
+###Reading
 
 Let's find a book by it's author.
 
+```javascript
   Book.find({author: "Lewis Carroll"}, function (err, books) {
     console.log(books);
   });
+```
+
 Try out some of the other find methods.
 
-findOne
-findById
+```javascript
+findOne();
+findById();
+```
 Reference the docs for more info on what you can do with Mongoose Models
 
-Storing a Query Object
+
+###Storing a Query Object
 
 We can console.log all books as follows:
 
+```javascript
 Book.find({}, function(err, books){
   console.log(books);
 });
-or we can avoid passing in a callback to our query and store it for later...
+```
 
+Note that a pair of empty curly braces signals that we want EVERYTHING returned. We can avoid passing in a callback to our query and store it for later...
+
+
+```javascript
 var query = Book.find({});
 query.exec(function(err, books){
   console.log(books);
 });
+```
 
+
+##Further suggested readings:
+[Mongoose official site](http://mongoosejs.com/index.html)
+[MongoDB official site](https://www.mongodb.org/)
+[Friendly Australian explains RDBMS vs noSQL](https://www.youtube.com/watch?v=XPqrY7YEs0A)
+[Google I/O: Battle of the Backends: SQL vs noSQL](https://www.youtube.com/watch?v=rRoy6I4gKWU)	
 	
