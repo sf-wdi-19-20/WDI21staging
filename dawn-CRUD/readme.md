@@ -1,7 +1,7 @@
 #Attack of the Mongo(ose)DB!
 
-| Learning Objectives
-|----
+| Learning Objectives |
+|:---|
 | Compare and Contrast an SQL with a noSQL database
 | Create a custom Schema and subsequent Model using the Mongoose library
 | Execute basic CRUD actions with the the console/REPL
