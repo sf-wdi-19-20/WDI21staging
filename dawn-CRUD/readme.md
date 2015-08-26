@@ -59,21 +59,104 @@ A great analogy from a fellow StackOverflower:
 
 
 ##Getting started with our own database!
-1.  Head over to our app folder and we will istall Mongoose via npm.   Mongoose is a Object-relational mapping middleware that enables us to easily model objects and interact with MongoDB.  
+Head over to our app folder and we will istall Mongoose via npm.   Mongoose is a Object-relational mapping middleware that enables us to easily model objects and interact with MongoDB.  
 
-	From the console:  
+From the console:  
 
-	```
-	npm init
-	npm install --save mongoose
-	```
+```
+npm init
+npm install --save mongoose
+```
 
-2.  We need to make sure MongoDB is running.  From the console, enter this command: 
+We need to make sure MongoDB is running.  From the console, enter this command: 
 
-	```
-	mongod
-	```
-Mongodb's secret servers will run in the background, so we don't have to worry about anything for right now.
+```
+mongod
+```
+*Mongodb's secret servers will run in the background, so we don't have to worry about anything for right now.*
 
-	
+Go into your node repl, by typing `node` into bash.
+
+Let's require mongoose and connect to our database.
+
+```javascript
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/test");
+```
+
+Pro Tip: press tab in node to see all global variables
+
+###Modeling
+
+Let's create `Book` model. A `Book` has a few different characteristics: `title`, `author`, and `description`.
+
+To create a `Book` model we have to use a Schema:
+
+```javascript
+var Schema = mongoose.Schema;
+var BookSchema = new Schema({
+    title: String,
+    author: String,
+    description: String
+});
+```
+and finally create the model
+
+```javascript
+var Book = mongoose.model('Book', BookSchema);
+```
+
+[Here is a link to all of the different datatypes we can use in a Schema](http://mongoosejs.com/docs/schematypes.html)
+
+Building and Creating Documents
+
+A MongoDB Document is the entry of of data stored in MongoDB; Documents are analogous to JSON objects but exist in the database in a more type-rich format known as BSON (binary-JSON).
+
+If you want to build up a new Book you can just do the following:
+
+var book = new Book({title: "Alice's Adventures In Wonderland"});
+Then you can play with it.
+
+book.author = "Lewis Carroll";
+This is called building as you're playing with an object that can be saved to the database, but doesn't exist there yet.
+
+Once you're done building you can save the book.
+
+book.save()
+If you want to build & save in one step you can use create.
+
+Book.create({title: "The Giver"}, function (err, book) {
+  console.log(book);
+});
+Removing
+
+remove
+findByIdAndRemove
+Reading
+
+Let's find a book by it's author.
+
+  Book.find({author: "Lewis Carroll"}, function (err, books) {
+    console.log(books);
+  });
+Try out some of the other find methods.
+
+findOne
+findById
+Reference the docs for more info on what you can do with Mongoose Models
+
+Storing a Query Object
+
+We can console.log all books as follows:
+
+Book.find({}, function(err, books){
+  console.log(books);
+});
+or we can avoid passing in a callback to our query and store it for later...
+
+var query = Book.find({});
+query.exec(function(err, books){
+  console.log(books);
+});
+
 	
