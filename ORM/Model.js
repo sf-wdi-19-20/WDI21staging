@@ -4,8 +4,6 @@ function Model(name){
   this._id = 0;
 }
 
-
-
 Model.prototype = {
 
     create : function (object, callback){
@@ -28,27 +26,11 @@ Model.prototype = {
     },
 
     update : function(objectId, updateObject, callback) {
-        var update;
-        this.data.forEach( function (object) {
-          if(object._id === objectId){
-            object.data = updateObject;
-            update = object;
-          }
-        });
-        return update;
-      
+      // :P
     },
 
     delete : function(objectId, callback) {
-        var pos, marked;
-        this.data.forEach( function (object, index) {
-          if(object._id === objectId){
-            marked = object;
-            pos = index;
-          }
-        });
-        this.data.splice(pos,1);
-        return callback(marked);
+     // :P
     }
 }
 
@@ -73,23 +55,23 @@ var user = new Model("user");
 var found = user.find_by_id(3, function(success) {
     return success;
 });
-//console.log("Searched:\n", found);
+console.log("Searched:\n", found);
 
 
-/* Delete object */
-var deleted = user.delete(1, function(success) {
-    return success;
-});
+// /* Delete object */
+// var deleted = user.delete(1, function(success) {
+//     return success;
+// });
 
-/* Update object properties */
+// /* Update object properties */
 
-var updated = user.update(2, {first_name: "Joey", last_name: "Michaels"});
+// var updated = user.update(2, {first_name: "Joey", last_name: "Michaels"});
 
 
-/* Create object, Show continuation of id scheme after delete*/
-user.create({first_name: "Billy", last_name: "Bragg"}, function(person){
-    return person;
-  });
+// /* Create object, Show continuation of id scheme after delete*/
+// user.create({first_name: "Billy", last_name: "Bragg"}, function(person){
+//     return person;
+//   });
 
 
 /* Display data content */
