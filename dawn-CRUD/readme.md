@@ -55,4 +55,25 @@ A great analogy from a fellow StackOverflower:
 > 
 > Wouldn’t it be nicer if there was a store was organized by recipe, so you could go to one place in the store and grab everything you need from that one spot? Granted you’ll find ingredients like eggs in 50 different places, so there’s a bit of overhead when stocking the shelves, but from a consumer standpoint it was much easier/faster to find what they were looking for."  
 
--[mgoffin, Jan 20 '13 at 19:15](http://stackoverflow.com/questions/14428069/sql-and-nosql-analogy-for-the-non-technical/14428221#14428221)
+-[mgoffin, Jan 20 '13 at 19:15](http://stackoverflow.com/questions/14428069/sql-and-nosql-analogy-for-the-non-technical/14428221#14428221)  
+
+
+##Getting started with our own database!
+1.  Head over to our app folder and we will istall Mongoose via npm.   Mongoose is a Object-relational mapping middleware that enables us to easily model objects and interact with MongoDB.  
+
+	From the console:  
+
+	```
+	npm init
+	npm install --save mongoose
+	```
+
+2.  We need to make sure MongoDB is running.  From the console, enter this command: 
+
+	```
+	mongod
+	```
+Mongodb's secret servers will run in the background, so we don't have to worry about anything for right now.
+
+	
+	
