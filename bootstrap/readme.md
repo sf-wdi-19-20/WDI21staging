@@ -12,7 +12,7 @@ Created by Twitter, [Bootstrap](http://getbootstrap.com/) is a collection of CSS
 
 ##Bower can make our life easier
 
-Bower is a tool that helps us find, download, and manage the numerous javascript & css libraries you frequently use in html your. 
+Bower is a tool that helps us find, download, and manage the numerous JavaScript & CSS libraries you frequently use in html your. 
 
 jQuery, Underscore, Bootstrap, etc are all libraries we may want to add to our project. It can be a hassle to go searching around to find the where each one lives when we are linking them to our html page. Instead let's use **Bower**, a library management tool, which will bring them to us!
 
@@ -24,7 +24,7 @@ You'll only need to do this once. Install bower with...
 npm install -g bower
 ```
 
-**Note: as we installed it globally with `-g` we can run `bower` from anywhere in our computer.**
+*Note: as we installed it globally with `-g` we can run `bower` from anywhere in our computer.*
 
 Let's now make and enter into a directory, `/funWithBootstrap`, which we will use to play around with these tools.
 
@@ -75,7 +75,7 @@ The `bootstrap-theme` file is an option file that will give you bootstrap compon
 
 Now we would like to have our html file link to jQuery, Underscore, and most importantly Bootstrap! *Note: Bootstrap come with both CSS and Javascript libraries that work together.*
 
-###Challenge: Require the libraries
+###CHALLENGE: Require the libraries
 
 From your html file use `<script>` and `<link>` tags to import jQuery, Underscore, Bootstrap (both the CSS & JavaScript files) into your projects. Let's use the non-minifed versions of the files for now and you can import Bootstrap's option theme file if you wish.
 
@@ -144,7 +144,7 @@ Given we want to build a 12-column grid system we would have to consider 12 of 1
 ...
 ```
 
-###Challenge: Grids
+###CHALLENGE: Grids
 
 What percentage would you have to make the width for a div that took up 3 columns (.column-3)? How about 2 & 1 (.column-2, .column-1)?
 
@@ -161,7 +161,7 @@ When telling an html element how many columns it can take up, we also tell it at
 * col-md-* =< 1200px
 * col-lg-* >= 1200px
 
-##Mockups
+##Mockups (in-class)
 
 We'll be coding up a few mockups using Bootstrap. Fork and clone [this repo](https://github.com/sf-wdi-21/bootstrap_mockups) to get started.
 
