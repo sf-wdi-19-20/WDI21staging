@@ -1,12 +1,12 @@
 #CatchPhrase.ly
 
-Let's build an app for the game **Catchphrase**! Catchphrase is the game were you see a definition associated with a word.
+Let's build an app for **Catchphrase**! If you forget, Catchphrase is played to help remember words' definitions, just like flash cards. To play we need a list of `phrases` which have a `word` and a `definition`. For example: `word: "HTTP", definition: "part of the application layer of Internet protocol suite that is used to transfer media across the world wide web"`
 
 The lab will be a review of what we've done this past week. It is broken down into several sprints outlined below.
 
 ##Tips
 
-Model this project after the ToEat.ly app we built. First start CRUDing phrases just as we crudded food items. After you get that down you can worry about how to impliment any gamification, such as hiding the word until you click the definition.
+Model this project after the ToEat.ly app we built. First start CRUDing phrases just as we crudded food items. After you get that down you can worry about implimenting any bonus gamification. After sprint three, if you have the energy you can attempt hiding the definition until you click the word.
 
 ##Sprint One
 
@@ -15,56 +15,57 @@ Model this project after the ToEat.ly app we built. First start CRUDing phrases 
 
 * A phrase object should have the properties: `_id`, `word`, & `definition`
 
-* The app should hold an array of hard-coded phrases. This will serves as our "database". (Make some phrases up!)
+* The app should, for now, store hard-coded phrases as an array of objects. This will serves as a temporary "database" of sorts. (Create some phrases!)
 
 ###General Guidelines
 * Start an express project with all the necessary requirements
-* Create an index (home) page
-* Serve up your static assets (html, css, js) in a public directory
-* Your '/phrases' route should return phrases as JSON
+* Create an `index.html` (home) page
+* Serve up your static assets in a public directory
+* Use bower to require any libraries and serve them up in a vendor directory
+* Your '/phrases' index route should return all the phrases as JSON
 * Use AJAX to GET phrases
-* Render the phrases on the index page using underscore templating
+* Template the phrases on the index page using underscore
 
 ##Sprint Two
 
 ###User Stories
 **A User should be able to create a new phrase by submitting a form**
 
-* The DOM should maintain state accordingly
+* The DOM should update state accordingly
 
 * The phrase should persist with a page refresh
 
 **A User should be able to delete any phrase**
 
-* The DOM should update accordingly
+* The DOM should update state accordingly
 	
 * The removed phrase should remain removed upon a page refresh
 
 ###General Guidelines
 
 * Create a form for the user to add a new catchphrase
-* Send an AJAX POST with form data, overiding the default behavior - only after the post is successful, update the view according
+* Send an AJAX POST with form data, overiding the default behavior. Only after the post is successful, update the view according
 * Add a delete button next to each phrase. When a user clicks the button, delete the corresponding phrase from the backend (the ids should match); once the delete is successful, update the view accordingly.
    
 ##Sprint Three
 
-We will be building the last interation of Catchphrasely!
+We will be building the last interation of Catchphrasely! Make sure you've been pacing yourself up until now and taking plenty of breaks.
 
 Before you start, *make sure* you've completed the first two parts; you *must* have routes for **Reading, Creating, and Deleting** your phrases.
 
 ###User Stories
 **A User should be able to see the same phrases in the application, even if the server restarts.** (The phrase data is *persistent*.)
 
-* Phrase data is persistent
+* All phrase data should persist
 
 **A User should be able to read, create, and delete data from the database**
 
-* See existing phrases (served from the DB) 
-* Save new phrases (permanently to the DB)
-* Delete specific phrases (from the DB)
+* Existing phrases should all be served from the DB
+* New phrases should be permanently saved to the DB
+* Deleting phrases should perminently remove them from the DB
 
 ###General Guidelines
 
 * Make sure you can successfully connect to your Mongo DB & run CRUD commands from the Node REPL / console. Test this beforehand!
-* Use a `seed` file to make initially populating & reseting your database's content easier
+* Try using a `seed` file to make initially populating & reseting your database's content easier
 * Make sure your routes perform CRUD action on the database that follows a RESTful convention
