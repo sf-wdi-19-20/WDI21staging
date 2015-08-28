@@ -1,0 +1,54 @@
+<!DOCTYPE  html>
+<html><head>
+
+
+<script>
+
+var timerid = null;
+
+
+function move()
+{
+document.getElementById('dawg').style.left = 
+    parseInt(document.getElementById('dawg').style.left) + 1 + 'px';    
+}
+
+window.onload=function()
+{   
+
+
+
+document.getElementById('button1').onclick=function(){
+
+    if(timerid == null){
+        timerid = setInterval("move()", 10);
+    }else{
+        clearInterval(timerid);
+        timerid = null;
+    }
+}   
+
+
+var button2 = document.getElementById('button2');
+button2.onclick= reloadPage;
+
+    function reloadPage(){
+        window.location.reload();
+    }
+
+}
+
+
+</script>
+</head>
+<body>
+
+<img id="dawg" src="dawg2.jpg" style="position:relative;left:20px"/>
+
+<div>
+<button id="button1" type="button" style="position:absolute;left:10px;top:190px"/>START</button>
+<button id="button2" type="button" style="position:absolute;left:10px;top:220px"/>STOP & RESET</button>
+</div>
+
+</body>
+</html>

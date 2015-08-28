@@ -1,0 +1,16 @@
+h1{color: green}	
+
+p{font-family:tacoma;
+  color:red;
+  font-size:20px;}
+
+  a{color:orange};
+
+ canvas{
+/*margin: 20px;
+padding: 20px;*/
+background: white;
+border:1px solid black;
+width: 50px;
+height: 50px;
+}
