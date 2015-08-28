@@ -8,8 +8,8 @@ The lab will be a review of what we've done this past week. It is broken down in
 
 Model this project after the ToEat.ly app we built. First start CRUDing phrases just as we crudded food items. After you get that down you can worry about implimenting any bonus gamification. After sprint three, if you have the energy you can attempt hiding the definition until you click the word. Use the following two in-class builds as references:
 
-* [ToEatly v1](https://github.com/sf-wdi-21/toEatly/tree/dash-six) - final build & [instructions](https://github.com/sf-wdi-21/notes/blob/master/week-03/day-03-crud-express/dawn-to-eatly/readme.md)
-* [ToEatly v2](https://github.com/sf-wdi-21/bite_me_mongo_express) - w/ mongodb
+* ToEatly v1 lab - [solution](https://github.com/sf-wdi-21/toEatly/tree/dash-six) & [instructions](https://github.com/sf-wdi-21/notes/blob/master/week-03/day-03-crud-express/dawn-to-eatly/readme.md)
+* ToEatly v2 (w/ mongodb) - [solution](https://github.com/sf-wdi-21/bite_me_mongo_express/tree/solution) & [instructions](https://github.com/sf-wdi-21/bite_me_mongo_express)
 
 ##Sprint One
 
