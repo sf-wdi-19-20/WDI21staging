@@ -1,4 +1,5 @@
 /* Style Sheet */
+<<<<<<< HEAD
 /* initial style */
 	.body {
 	background-position: center;
@@ -108,3 +109,24 @@
 		}
 		
 		
+=======
+
+#canvas{
+	margin-top: 200px;
+	margin-bottom:0;
+	width: 1000px;
+	height: 200px;
+	background: red;
+
+}
+#dawg{
+    float: left;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position:absolute;
+    left:5px;
+    top: 25px;
+    -webkit-transition:1s;
+}
+>>>>>>> 73f588620e612c955638dcbff2e8c216db3763f4

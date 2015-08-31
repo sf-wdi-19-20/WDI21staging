@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Style Sheet */
 table {
 	margin: 30px;
@@ -25,4 +26,49 @@ table tr td {
 
 .end {
 	border-left: solid red;
+=======
+<!---CSS for Racing Game--->
+
+
+.racetrack {
+  max-width: 800px;
+  margin: 10px auto;
+  float: left;
+  width: 60%;
+  margin-left: 20%;
+}
+
+
+
+td {
+  background-color: white;
+}
+
+.active {
+  background-color: red;
+}
+
+table {
+  margin: auto;
+}
+
+tr, td { 
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+  border: 2px solid #ccc;
+}
+
+.btn {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #777;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.reset {
+  display: none;
+>>>>>>> 73f588620e612c955638dcbff2e8c216db3763f4
 }
