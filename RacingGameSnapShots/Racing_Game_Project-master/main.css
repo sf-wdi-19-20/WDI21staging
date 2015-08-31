@@ -1,0 +1,110 @@
+/* Style Sheet */
+/* initial style */
+	.body {
+	background-position: center;
+	text-align: center;
+	background-color: grey;
+	font-family: 'Press Start 2P', cursive;
+}
+
+
+	.h1 {
+	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 74;
+	color: red;
+}
+
+	.h2 {
+	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 24;
+	color: red;
+}
+
+	.track {
+		max-width: 2000px;
+		margin: 20px auto;
+	}
+	.track:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+  .grid {
+  	float: left;
+  	width: 60%;
+  	margin-left: 20%;
+  	}
+  .table.01 {
+  	margin: 0, auto, 0;
+  	}
+
+  .table.tr.td {
+  	height: 20px;
+  	width: 50px;
+  	padding: 20px;
+  	border: 10px solid #ccc;
+  	background-color: cyan;
+  	}
+
+  .tracktwo {
+		max-width: 2000px;
+		margin: 60px auto;
+	}	
+   
+  .tracktwo:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+  	}
+
+  .gridtwo {
+  	float: left;
+  	width: 60%;
+  	margin-left: 20%;
+  	}
+
+  	.table.01 {
+  	margin: 0, auto, 0;
+  	}
+
+  	.table.tr.td  {
+  	height: 20px;
+  	width: 50px;
+  	padding: 20px;
+  	border: 10px solid green;
+  	background-color: white;
+  	}
+  	.instructions {
+  	float: left;
+  	width: 20%;
+  	}
+
+  	.player {
+  	height: 10px;
+  	width: 30px;
+  	border-radius: 15px;
+	}
+		
+
+
+	.btn {
+	margin: auto;
+	background-color: transparent;
+	text-decoration: none;
+	border: 1px solid #777;	
+	padding: 10;
+	border-radius: 3px;
+		}
+
+	.reset {
+	margin: auto;
+	background-color: transparent;
+	text-decoration: none;
+	border: 1px solid #777;
+	padding: 10;
+	border-radius: 3px;
+		}
+		
+		
