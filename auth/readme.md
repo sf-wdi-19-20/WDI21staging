@@ -6,7 +6,7 @@
 | Leverage a session to save a logged-in user's data  |
 | Design routes for a user to `/login` and `/logout` |
 
-## Auth
+## Authentication / Authorization
 
 * **Authentication** verifies that a user is who they say they are. When a user logs into our site, we *authenticate* them by checking that the password they typed in matches the password we have stored for them.
 * **Authorization** is the process of determining whether or not a user has *permission* to to perform certain actions on our site. For example, a user may *be authorized* to view their profile page and edit their own blog posts, but not to edit another user's blog posts.
@@ -28,9 +28,9 @@ Think of a digested password as a firework. It is very easy to explode a firewor
 
 ##Bcrypt
 
-[Bcrypt](https://github.com/ncb000gt/node.bcrypt.js/) is the most widely used, open-source password hashing library across any language.
+[Bcrypt](https://www.npmjs.com/package/bcrypt) is the most widely used, open-source password hashing library across any language.
 
-Let's play with it!
+Play with it!
 
 ```bash
 npm install bcrypt
@@ -81,6 +81,7 @@ To signup & signin a user in an application will be the same thing. The only dif
 <hr>
 
 
-##Further Resource
+##Helpful Videos
 
-* [Bcrypt NodeJS Docs](https://www.npmjs.com/package/bcrypt)
+* [How one-way encryption works](http://www.wimp.com/howencryption/)
+* [How not to store passwords](https://www.youtube.com/watch?v=8ZtInClXe1Q)
