@@ -6,66 +6,81 @@
 | Leverage a session to save a logged-in user's data  |
 | Design routes for a user to `/login` and `/logout` |
 
-## Authentication & Authorization
+## Auth
 
 * **Authentication** verifies that a user is who they say they are. When a user logs into our site, we *authenticate* them by checking that the password they typed in matches the password we have stored for them.
 * **Authorization** is the process of determining whether or not a user has *permission* to to perform certain actions on our site. For example, a user may *be authorized* to view their profile page and edit their own blog posts, but not to edit another user's blog posts.
+
+A user must always first be authenticated, then it can be determined what they are authorized to do.
+
+Example: when Sarah enters a bar, a bouncer looks at her photo ID to ensure (authenticate) that she is who she claims. Sarah is thirty years old so she is allowed (authorized) to drink.
 
 
 ##Password hashing
 
 In order to authenticate a user, we need to store their password in our database. This allows us to check that the user typed in the correct password when logging into our site.
 
-The downside is that if anyone ever got access to our database, they would also have access to all of our users' login information. We use a <a href="https://crackstation.net/hashing-security.htm#normalhashing" target="_blank">hashing algorithm</a> to avoid storing plain-text passwords in the database. We also use a <a href="https://crackstation.net/hashing-security.htm#salt" target="_blank">salt</a> to randomize the hashing algorithm, providing extra security against potential attacks. The plain-text password that has been hashed can be refered to as the **password digest**.
+The downside is that if anyone ever got access to our database, they would also have access to all of our users' login information. We use a [**hashing algorithm**](https://crackstation.net/hashing-security.htm#normalhashing) to avoid storing plain-text passwords in the database. We also use [**salt**](https://crackstation.net/hashing-security.htm#salt) to randomize the hashing algorithm, providing extra security against potential attacks. The plain-text password that has been hashed can be referred to as the **password digest**.
 
-Think of a digested password as a firework. It is very easy to explode a firework (*hash plaintext into a digest*), but next to impossible to reverse that process (*turn the digest back into plaintext*). If I wanted to see if two sets of fireworks are the same (*a user is logging in, aka has provided their password and wishes to be authenticated*) we have to explode the fireworks again to compare it against the original explosion (*take the provided plaintext password, hash it again using the same algorythm, and match it against the saved password digest*).
+Think of a digested password as a firework. It is very easy to explode a firework (*hash plaintext into a digest*), but next to impossible to reverse that process (*turn the digest back into plaintext*). If I wanted to see if two sets of fireworks are the same (*a user is logging in, aka has provided their password and wishes to be authenticated*) we have to explode the fireworks again to compare it with the original explosion (*take the provided plaintext password, hash it again using the same algorithm, and match it with the saved password digest*).
 
 ![fireworks](http://i.giphy.com/122XXtx3oumxBm.gif)
 
 ##Bcrypt
 
-[Bcrypt](https://github.com/ncb000gt/node.bcrypt.js/) is the most widely used, opensource password hashing library across any langauge.
+[Bcrypt](https://github.com/ncb000gt/node.bcrypt.js/) is the most widely used, open-source password hashing library across any language.
 
 Let's play with it!
 
 ```bash
-npm install --save bcrypt
+npm install bcrypt
 ```
 
-Enter into node:
+Enter into `node` then require `bcrypt`:
 
 ```javascript
-require('bcrypt');
+// require bcrypt
+var bcrypt = require('bcrypt');
 ```
 
+###Signup
+
+**Generating password digests** Let's hash a password for an user:
+
+```javascript
+// user object 
+var user = {name: 'bob', createdAt: Date.now() }
+// create a plaintext password
+var password = 'swordfish';
+// generate salt for more security
+bcrypt.genSalt(10, function(err, salt) {
+  // hash the password w/ the salt
+  bcrypt.hash(password, salt, function(err, hash) {
+	// save the password digest (hash) to the user
+	user.passwordDigest = hash;
+  });
+});
+```
+
+Check the user object again and see the passwordDigest stored inside of it. Great! We could store this user to a database and have implimented good security by only storing the password digest and not the plaintext version.
+
+###Signin
+
+**Authenticating a user** Now that we have saved the user bob, how can we be sure it's actually him next time he logs into his account. We will require him to provide the same password again. 
+
+In the same node session, let's experiment with comparing a provided plaintext password with an existing password digest to authenticate a user.
+
+```javascript
+bcrypt.compare('swordfish', user.passwordDigest, function(err, res) {
+  return console.log("user authenticated: " + res);
+});
+```
+
+To signup & signin a user in an application will be the same thing. The only difference is we will have a `User` model and a database to persist to.
+
 <hr>
-### More on bcrypt:
-
-How it works:
- 
-- Generate a random salt (A "work" factor has been pre-configured.)
--  Collect a password.
-- Derive an encryption key from the password using the salt and cost factor. Use it to encrypt a well-known string. 
-- Store the cost, salt, and cipher text. Because these three elements have a known length, it's easy to concatenate them and store them in a single field, yet be able to split them apart later.
-
-When someone tries to authenticate, retrieve the stored cost and salt. Derive a key from the input password. Encrypt the same well-known string. If the generated cipher text matches the stored cipher text, the password is a match.
-
-Stored in the database, a bcrypt "hash" might look something like this:
-
-`$2a$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa`
-
-- 2a identifies the bcrypt algorithm version that was used.
-- 10 is the cost factor; 2^10 iterations of the key derivation function are used 
-- vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa is the salt and the cipher text, concatenated and encoded in a modified Base-64. The first 22 characters decode to a 16-byte value for the salt. The remaining characters are cipher text to be compared for authentication.
-- $ are used as delimiters for the header section of the hash.
-
-The bcrypt utility does not maintain a list of salts. Rather, salts are generated randomly and appended to the output of the function so that they are remembered later on. Put another way, the "hash" generated by bcrypt is not just the hash. Rather, it is the hash and the salt concatenated.
 
 
-#### Salting
+##Further Resource
 
-Not only is it important to hash a password, we need to add an additional layer of security and we do that by adding salt. Salting provides an extra hash at the end of our password which makes it much much more difficult for someone to crack our password using brute force (trying again and again) or a lookup table.
-
-You can read more about this [here](https://crackstation.net/hashing-security.htm)
-
-If you STILL want to read more about bcrypt and salting, [this](http://dustwell.com/how-to-handle-passwords-bcrypt.html) is a fantastic article.
+* [Bcrypt NodeJS Docs](https://www.npmjs.com/package/bcrypt)
