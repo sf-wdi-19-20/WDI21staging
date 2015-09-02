@@ -100,7 +100,7 @@ Let's write some logic to connect to our database and bring in our user model to
 
 ```javascript
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/simple_login");
+mongoose.connect("mongodb://localhost/express_auth");
 module.exports.User = require("./user");
 ```
 
@@ -247,15 +247,13 @@ db.User.createSecure("alice@ga.co", "foobarbazz", function(err, user){
 
 Let's add our models to our app.
 
-`simple_login/app.js`
+`index.js`
 
-```js
+```javascript
 var express = require('express'),
     bodyParser = require('body-parser'),
     db = require("./models"),
     app = express();
-
-
 ```
 
 Let's add a `POST /users` route to accept user signup requests.
@@ -280,3 +278,134 @@ Let's test our `signup` route by sending it a post request using the `curl` comm
 ```bash
 curl --data "user[email]=alice@ga.co&user[password]=foobarbazz" localhost:3000/signup
 ```
+
+##Step 5: Login Route
+
+Similarly to signup, let's add a route to login.
+
+`index.js`
+
+```javascript
+// where the user submits the login form
+app.post(["/sessions", "/login"], function login(req, res) {
+  var user = req.body.user;
+  var email = user.email;
+  var password = user.password;
+  db.User.authenticate(email, password, function (err, user) {
+    res.send(email + " is logged in\n");
+  });
+});
+```
+
+Then test the route:
+
+```bash
+curl --data "user[email]=alice@ga.co&user[password]=foobarbazz" localhost:3000/login
+```
+
+##Step 6: Sessions
+
+As you may [remember](https://github.com/sf-wdi-21/notes/blob/master/week-04/day-2-cookies-sessions/README.md#sessions), sessions help us store information about a user's current login state on the server side that is referred to by a `session-id`, placed in a cookie (session-cookie) passed to the client and returned back to the server with every request.
+
+To add sessions into our app we can use the `express-session` middleware.
+
+```bash
+npm install --save express-session
+```
+
+Let's make a session:
+
+`index.js`
+
+```javascript
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    db = require("./models"),
+    session = require("express-session"),
+    app = express();
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+// create our session
+app.use(
+  session({
+    secret: 'super-secret-private-keyyy',
+    resave: false,
+    saveUninitialized: true
+  })
+);
+```
+
+Now hit your routes to see if they have a `set-cookie` header
+
+```
+curl --data "user[email]=bob@ga.co&user[password]=bazzbarfoo" -i localhost:3000/signup
+curl --data "user[email]=bob@ga.co&user[password]=bazzbarfoo" -i localhost:3000/login
+```
+
+To login a user we'll need to populate their `req.session` object with their `userId`. Setting the `userId` helps us identify which user we are dealing with. As we'll be using certain functionallity in our app a lot, we can extend the `req` object to abstract it away from us. Let's create three new methods for the `req` object:
+
+* `req.login(user)`: to login a user
+* `req.currentUser()`: to return the user that is logged in
+* `req.logout()`: to logout the current user.
+
+
+```javascript
+// extending the `req` object to help manage sessions
+app.use(function (req, res, next) {
+  // login a user
+  req.login = function (user) {
+    req.session.userId = user._id;
+  };
+  // find the current user
+  req.currentUser = function (cb) {
+    db.User.
+      findOne({ _id: req.session.userId },
+      function (err, user) {
+        req.user = user;
+        cb(null, user);
+      })
+  };
+  // logout the current user
+  req.logout = function () {
+    req.session.userId = null;
+    req.user = null;
+  }
+  // call the next middleware in the stack
+  next(); 
+});
+```
+
+We can refactor our `/login` route to take advantage of the `req.login(user)` method and then redirect to their profile.
+
+`index.js`
+
+```javascript
+// where the user submits the login form
+app.post(["/sessions", "/login"], function login(req, res) {
+  var user = req.body.user;
+  var email = user.email;
+  var password = user.password;
+  db.User.authenticate(email, password, function (err, user) {
+    // login the user
+    req.login(user);
+    // redirect to user profile
+    res.redirect("/profile"); 
+  });
+});
+``` 
+
+Finally, we can add a `/profile` route that our `/login` route redirects to and take advantage of the `req.currentUser()` method:
+
+```javascript
+// show the current user
+app.get("/profile", function userShow(req, res) {
+  req.currentUser(function (err, user) {
+    res.send("hello" + user.email);
+  })
+});
+```
+
+##Step 7: Adding Views
+
+
