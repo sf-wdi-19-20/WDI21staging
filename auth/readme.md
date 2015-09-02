@@ -401,11 +401,60 @@ Finally, we can add a `/profile` route that our `/login` route redirects to and 
 // show the current user
 app.get("/profile", function userShow(req, res) {
   req.currentUser(function (err, user) {
-    res.send("hello" + user.email);
+    res.send("Hello" + user.email);
   })
 });
 ```
 
 ##Step 7: Adding Views
 
+### Adding Views
+
+First let's  `mkdir` for views
+
+### Adding a Login Path
+
+
+We need a `GET /login` view and route.
+
+
+`index.js`
+
+```javascript
+
+var views = path.join(process.cwd(), "views");
+
+app.get("/login", function (req, res) {
+  res.sendFile(path.join(views,  "login"));
+});
+
+```
+
+Then create the login view:
+
+
+`views/login.html`
+
+```html
+<h1>Login</h1>
+<form method="post" action="/login">
+  <div>
+    <input type="text" name="user[email]">
+  </div>
+  <div>
+    <input type="text" name="user[password]">
+  </div>
+  <button>Login</button>
+</form>
+
+```
+
+
+CONGRATS! You've just hand-rolled a login system!
+
+
+## Moar Exercises ^_^
+
+1. Add a `GET /signup` route and view.
+2. Login a user after `signup` and redirect to a `/profile` page.
 
