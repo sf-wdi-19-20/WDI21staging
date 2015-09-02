@@ -458,7 +458,7 @@ Then create the login view:
       <input type="text" name="user[email]">
     </div>
     <div>
-      <input type="text" name="user[password]">
+      <input type="password" name="user[password]">
     </div>
     <button>Login</button>
   </form>
