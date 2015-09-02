@@ -415,17 +415,24 @@ First let's  `mkdir` for views
 ### Adding a Login Path
 
 
-We need a `GET /login` view and route.
+We need a `GET /login` view and route by requiring `path` and creating a path to our views.
 
 
 `index.js`
 
 ```javascript
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    db = require('./models'),
+    session = require('express-session'),
+    path = require('path'),
+    app = express();
 
+// views path
 var views = path.join(process.cwd(), "views");
 
 app.get("/login", function (req, res) {
-  res.sendFile(path.join(views,  "login"));
+  res.sendFile(path.join(views, "login"));
 });
 
 ```
@@ -436,17 +443,27 @@ Then create the login view:
 `views/login.html`
 
 ```html
-<h1>Login</h1>
-<form method="post" action="/login">
-  <div>
-    <input type="text" name="user[email]">
-  </div>
-  <div>
-    <input type="text" name="user[password]">
-  </div>
-  <button>Login</button>
-</form>
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Title</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <h1>Login</h1>
+  <form method="post" action="/login">
+    <div>
+      <input type="text" name="user[email]">
+    </div>
+    <div>
+      <input type="text" name="user[password]">
+    </div>
+    <button>Login</button>
+  </form>
+</body>
+</html>
 ```
 
 
