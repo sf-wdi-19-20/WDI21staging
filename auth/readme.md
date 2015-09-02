@@ -139,5 +139,144 @@ var User = mongoose.model('User', UserSchema);
 module.exports = User;
 ```
   
-##Step 3: ...
+##Step 3: User Model Methods
 
+Earlier we [played with Bcrypt](https://github.com/sf-wdi-21/notes/blob/master/week-04/day-3-auth/readme.md#bcrypt) to discover how we could help signup a user by generating a secure password or signin a user by comparing the password digest with the hashed version of the provided password. We're going to take that logic and *encapsulate* it into our User model's methods. 
+
+Remember `statics` are methods that will be accessible on the `db.User` model, while `methods` are accessible on an instance of the user model, aka a `new db.User()`.
+
+There are four methods we're adding to our model below. This saves us from writing logic in our the functions our routes execute, also known as **controllers** and rather *abstract* it to our **model**. It is best to have fat models and skinny controllers (more logic in the model). The four models we are writing are as follows (note `::` indicates a method on the constructor, while `#` indicates a method on all instances):
+
+* **`::createSecure`**: used create a new user with a password digest (signup).
+* **`::authenticate`**: used to hash a provided password with a specific user's existing password digest. It relies partly on the `#checkPassword` method below. (signin).
+* **`#checkPassword`**: used to check if a user's password is correct.
+* **`#trySave`**: attempts to save the user, displaying an error message if not successful.
+
+`models/user.js`
+
+```javascript
+// require dependencies
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt');
+
+// create user schema
+var UserSchema = new Schema({
+  email: {type: String, required: true},
+  passwordDigest: {type: String, required: true},
+  createdAt: {type: Date, required: true}
+});
+
+// create a new user with secure (hashed) password (for sign up)
+UserSchema.statics.createSecure = function (email, password, cb) {
+  // `_this` now references our schema
+  var _this = this;
+  // generate some salt
+  bcrypt.genSalt(function (err, salt) {
+    // hash the password with the salt
+    bcrypt.hash(password, salt, function (err, hash) {
+      // build the user object
+      var user = {
+        email: email,
+        passwordDigest: hash,
+        createdAt: Date.now()
+      };
+      // create a new user in the db with hashed password and execute the callback when done
+      _this.create(user, cb);
+    });
+  });
+};
+
+// authenticate user (for login)
+UserSchema.statics.authenticate = function (email, password, cb) {
+  // find user by email entered at log in
+  this.findOne({email: email}, function (err, user) {
+    console.log("found: " + user);
+
+    // throw error if can't find user
+    if (user === null) {
+      throw new Error('Can\'t find user with email ' + email);
+
+    // if found user, check if password is correct
+    } else if (user.checkPassword(password)) {
+      // the user is found & password is correct, so execute callback
+      // pass no error, just the user to the callback
+      cb(null, user);
+    }
+  });
+};
+
+// compare password user enters with hashed password (`passwordDigest`)
+UserSchema.methods.checkPassword = function (password) {
+  // run hashing algorithm (with salt) on password to compare with stored `passwordDigest`
+  // `compareSync` is like `compare` but synchronous
+  // returns true or false
+  return bcrypt.compareSync(password, this.passwordDigest);
+};
+
+// checks if a user is valid
+UserSchema.methods.trySave = function() {
+  this.save(function(err, user) {
+    if (err === null) {
+      console.log(user + "\nsuccessfully saved!")
+    } else {
+      console.log("Error saving: " + err.message)
+    }
+  })
+}
+
+// define user model
+var User = mongoose.model('User', UserSchema);
+
+ // export user model
+module.exports = User;
+```
+
+###Creating a user
+
+In node try creating a new User with a password digest generated for you:
+
+```javascript
+var db = require('./models');
+db.User.createSecure("alice@ga.co", "foobarbazz", function(err, user){
+  console.log("success!", user);
+});
+```
+
+##Step 4: Signup Route
+
+Let's add our models to our app.
+
+`simple_login/app.js`
+
+```js
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    db = require("./models"),
+    app = express();
+
+
+```
+
+Let's add a `POST /users` route to accept user signup requests.
+
+```javascript
+// where the user submits the sign-up form
+app.post(["/users", "/signup"], function signup(req, res) {
+  // grab the user from the params
+  var user = req.body.user;
+  // pull out their email & password
+  var email = user.email;
+  var password = user.password;
+  // create the new user
+  db.User.createSecure(email, password, function() {
+    res.send(email + " is registered!\n");
+  });
+});
+```
+
+Let's test our `signup` route by sending it a post request using the `curl` command from our terminal. First start you server and then in a seperate terminal window run:
+
+```bash
+curl --data "user[email]=alice@ga.co&user[password]=foobarbazz" localhost:3000/signup
+```
