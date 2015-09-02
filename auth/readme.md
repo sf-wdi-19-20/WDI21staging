@@ -81,17 +81,17 @@ Run your `index.js` file using `nodemon`
 
 In the project, create a new directory for `models` and create a file for your `User` model.
 
-  ```bash
-  mkdir models
-  touch models/index.js
-  touch models/user.js
-  ```
+```bash
+mkdir models
+touch models/index.js
+touch models/user.js
+```
 
 Install `mongoose` for our Mongo ORM and `bcrypt` to help hash our passwords.
 
-  ```bash
-  $ npm install --save mongoose bcrypt
-  ```
+```bash
+$ npm install --save mongoose bcrypt
+```
   
 Let's write some logic to connect to our database and bring in our user model to our `models/index.js`.
 
@@ -106,39 +106,38 @@ module.exports.User = require("./user");
 
 In `models/user.js`, require `mongoose` and `bcrypt`.
 
- `models/user.js`
+`models/user.js`
  
-  ```javascript
-  // dependencies
-  var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt');
-  ```
+```javascript
+// dependencies
+var mongoose = require('mongoose'),
+Schema = mongoose.Schema,
+bcrypt = require('bcrypt');
+```
 
 Also write the `UserSchema`. Users should have the properties **email**, **passwordDigest**, and **createdAt**.
 
 `models/user.js`
 
-  ```js
-  // the user schema
-  var UserSchema = new Schema({
-    email: String,
-    passwordDigest: String,
-    createdAt: Date.now()
-  });
-  ```
+```javascript
+// the user schema
+var UserSchema = new Schema({
+  email: {type: String, required: true},
+  passwordDigest: {type: String, required: true},
+  createdAt: {type: Date, required: true}
+});
+```
 
 Finally create and export a mongoose model to be required it in other parts of our application.
 
 `models/user.js`
 
-  ```javascript
-  // define user model
-  var User = mongoose.model('User', UserSchema);
-
-  // export user model
-  module.exports = User;
-  ```
+```javascript
+// define user model
+var User = mongoose.model('User', UserSchema);
+// export user model
+module.exports = User;
+```
   
 ##Step 3: ...
 
