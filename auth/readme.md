@@ -1,87 +1,144 @@
-# Authentication with Express & Bcrypt
-
-| Objectives |
-| :--- |
-| Implement a password **authentication** strategy with bcrypt |
-| Leverage a session to save a logged-in user's data  |
-| Design routes for a user to `/login` and `/logout` |
-
-## Authentication / Authorization
-
-* **Authentication** verifies that a user is who they say they are. When a user logs into our site, we *authenticate* them by checking that the password they typed in matches the password we have stored for them.
-* **Authorization** is the process of determining whether or not a user has *permission* to to perform certain actions on our site. For example, a user may *be authorized* to view their profile page and edit their own blog posts, but not to edit another user's blog posts.
-
-A user must always first be authenticated, then it can be determined what they are authorized to do.
-
-Example: when Sarah enters a bar, a bouncer looks at her photo ID to ensure (authenticate) that she is who she claims. Sarah is thirty years old so she is allowed (authorized) to drink.
+# Auth in Express
 
 
-##Password hashing
+| Learning Objectives |
+| :---- |
+| Implement a password **authentication** strategy in Express |
+| Leverage a session to maintain logged-in state for users |
+| Create routes for managing user sessions |
 
-In order to authenticate a user, we need to store their password in our database. This allows us to check that the user typed in the correct password when logging into our site.
+##Setup
 
-The downside is that if anyone ever got access to our database, they would also have access to all of our users' login information. We use a [**hashing algorithm**](https://crackstation.net/hashing-security.htm#normalhashing) to avoid storing plain-text passwords in the database. We also use [**salt**](https://crackstation.net/hashing-security.htm#salt) to randomize the hashing algorithm, providing extra security against potential attacks. The plain-text password that has been hashed can be referred to as the **password digest**.
+###Background
 
-Think of a digested password as a firework. It is very easy to explode a firework (*hash plaintext into a digest*), but next to impossible to reverse that process (*turn the digest back into plaintext*). If I wanted to see if two sets of fireworks are the same (*a user is logging in, aka has provided their password and wishes to be authenticated*) we have to explode the fireworks again to compare it with the original explosion (*take the provided plaintext password, hash it again using the same algorithm, and match it with the saved password digest*).
+This lesson assumes you have background knowledge from the [Storing Passwords w/ Bcrypt](https://github.com/sf-wdi-21/notes/blob/master/week-04/day-3-auth/readme.md) reading.
 
-![fireworks](http://i.giphy.com/122XXtx3oumxBm.gif)
+###Our Tools
 
-##Bcrypt
+Today we will take advantage of:
 
-[Bcrypt](https://www.npmjs.com/package/bcrypt) is the most widely used, open-source password hashing library across any language.
+* Express Framework: build our application and handle requests
+* Express Middleware:
+  * `body-parser`: handle incoming form data
+  * `express-sessions`: manage user sessions
+  * `mongoose`: act as an ORM for Mongo
+  * `bcrypt`: hash passwords
 
-Play with it!
+###Pacing
+
+See all branches in this repo with `git branch -a`. If you want to skip to another point in the exercise, checkout to another step with `git checkout <branch_name>`.
+
+###Get Started
+
+Fork & Clone [this repo]().
+
+##Step 1: App Setup (10m)
+
+**Goal:** Create a boilerplate server.
+
+Inside the project you'll find a black `index.js` file that we will use as our server. Let's get started on setting up our project.
+
+Initialize npm (and press enter a bunch of times) to create your `package.json`
 
 ```bash
-npm install bcrypt
+npm init
 ```
 
-Enter into `node` then require `bcrypt`:
+At the very least we need something like the following:
 
-```javascript
-// require bcrypt
-var bcrypt = require('bcrypt');
+`index.js`
+
+```js
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    app = express();
+
+app.use(bodyParser.urlencoded({extended: true}))
+
+app.get("/signup", function (req, res) {
+  res.send("Coming soon");
+});
+
+var listener = app.listen(3000, function () {
+  console.log("Listening on port " + listener.address().port);
+});
 ```
 
-###Signup
+The above won't run unless we install those dependencies, so let's go ahead and make sure we do that now. 
 
-**Generating password digests** Let's hash a password for an user:
+
+Now let's try to install
+
+```
+npm install --save express body-parser
+```
+
+Run your `index.js` file using `nodemon`
+
+##Step 2: Setup Mongo (10m)
+
+**Goal:** Write a `UserSchema` and define a `User` model.
+
+In the project, create a new directory for `models` and create a file for your `User` model.
+
+  ```bash
+  mkdir models
+  touch models/index.js
+  touch models/user.js
+  ```
+
+Install `mongoose` for our Mongo ORM and `bcrypt` to help hash our passwords.
+
+  ```bash
+  $ npm install --save mongoose bcrypt
+  ```
+  
+Let's write some logic to connect to our database and bring in our user model to our `models/index.js`.
+
+
+`models/index.js`
 
 ```javascript
-// user object 
-var user = {name: 'bob', createdAt: Date.now() }
-// create a plaintext password
-var password = 'swordfish';
-// generate salt for more security
-bcrypt.genSalt(10, function(err, salt) {
-  // hash the password w/ the salt
-  bcrypt.hash(password, salt, function(err, hash) {
-	// save the password digest (hash) to the user
-	user.passwordDigest = hash;
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/simple_login");
+module.exports.User = require("./user");
+```
+
+In `models/user.js`, require `mongoose` and `bcrypt`.
+
+ `models/user.js`
+ 
+  ```javascript
+  // dependencies
+  var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt');
+  ```
+
+Also write the `UserSchema`. Users should have the properties **email**, **passwordDigest**, and **createdAt**.
+
+`models/user.js`
+
+  ```js
+  // the user schema
+  var UserSchema = new Schema({
+    email: String,
+    passwordDigest: String,
+    createdAt: Date.now()
   });
-});
-```
+  ```
 
-Check the user object again and see the passwordDigest stored inside of it. Great! We could store this user to a database and have implimented good security by only storing the password digest and not the plaintext version.
+Finally create and export a mongoose model to be required it in other parts of our application.
 
-###Signin
+`models/user.js`
 
-**Authenticating a user** Now that we have saved the user bob, how can we be sure it's actually him next time he logs into his account. We will require him to provide the same password again. 
+  ```javascript
+  // define user model
+  var User = mongoose.model('User', UserSchema);
 
-In the same node session, let's experiment with comparing a provided plaintext password with an existing password digest to authenticate a user.
+  // export user model
+  module.exports = User;
+  ```
+  
+##Step 3: ...
 
-```javascript
-bcrypt.compare('swordfish', user.passwordDigest, function(err, res) {
-  return console.log("user authenticated: " + res);
-});
-```
-
-To signup & signin a user in an application will be the same thing. The only difference is we will have a `User` model and a database to persist to.
-
-<hr>
-
-
-##Helpful Videos
-
-* [How one-way encryption works](http://www.wimp.com/howencryption/)
-* [How not to store passwords](https://www.youtube.com/watch?v=8ZtInClXe1Q)
