@@ -472,6 +472,6 @@ CONGRATS! You've just hand-rolled a login system!
 
 ## Moar Exercises ^_^
 
-1. Add a `GET /signup` route and view.
-2. Login a user after `signup` and redirect to a `/profile` page.
+1. Add a `GET /signup` route and view to create a new user
+2. When a user signs up, login them in, which will redirect them a `/profile` page.
 
