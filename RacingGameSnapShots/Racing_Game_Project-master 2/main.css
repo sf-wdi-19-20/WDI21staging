@@ -1,3 +1,32 @@
+<<<<<<< HEAD
+/* Style Sheet */
+table {
+	margin: 30px;
+	border-style: solid;
+}
+
+.cells {
+	height: 100px;
+  	width: 100px;
+  	padding: 10px;
+  	border: 5px;
+  	border-style: dotted;
+	
+}
+
+table tr td {
+	height: 50px;
+	width: 50px;
+	border: dotted;
+}
+
+.start {
+	border-right: solid blue;
+}
+
+.end {
+	border-left: solid red;
+=======
 <!---CSS for Racing Game--->
 
 
@@ -41,4 +70,5 @@ tr, td {
 
 .reset {
   display: none;
+>>>>>>> 73f588620e612c955638dcbff2e8c216db3763f4
 }
