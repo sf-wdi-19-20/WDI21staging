@@ -333,6 +333,7 @@ partial_sums([5,6,7])
 ```
 
 #### Using `Array#map`
+[API on Array#map] (http://ruby-doc.org/core-2.2.0/Array.html#method-i-map)
 
 Write a method for each exercise below that uses `Array#map`:
 
