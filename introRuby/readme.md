@@ -2,9 +2,9 @@
 ## Control Flow and Methods
 
 
-| After this module, you can phone Mom and tell her that you can: |
+| After this module, you can phone your friends and tell them you can: |
 |:--- |
-| Identify control flow patterns and functions in JS and utilize them in Ruby |
+| Identify control flow patterns and functions in Ruby |
 | Apply control flow to create command line applications |
 | Apply methods in ruby to solve problems |
 
