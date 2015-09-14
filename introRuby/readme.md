@@ -348,3 +348,10 @@ Write a method for each exercise below that uses `Array#map`:
 * Write a method to check if a number is a `palindrome`.
 * Write a method to `reverse` a word in-place, do not use iterators, use only a while loop and indices.
 * Write a method to `merge` to two sorted Arrays.
+
+### Further Reading
+
+* [Tutorialspoint Ruby Quick Guide](http://www.tutorialspoint.com/ruby/ruby_quick_guide.htm)
+* [Ruby Hash in Detail] (http://ruby-doc.org/core-2.2.0/Hash.html)
+* [RubyMonk Library](https://rubymonk.com/learning/books/1-ruby-primer)
+* [Online IRB Environment] (http://joshnuss.github.io/mruby-web-irb/)
