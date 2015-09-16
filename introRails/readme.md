@@ -3,12 +3,9 @@
 ###Learning Objetives
 By the end of this lecture you should be able to...
 
+- Articulate the Rails philosophy & the MVC pattern
+- Start a rails project with no database and create routes to static templates.
 - Distinguish between Express and Rails
-- Articulate the Rails philosophy
-- Describe MVC
-- Start a new app
-- Navigate Rails directory structure
-- Link routes, controllers and views
 
 ##Philosophy
 
