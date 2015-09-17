@@ -7,7 +7,7 @@ By the end of this lecture you should be able to...
 - Start a rails project with no database and create routes to static templates.
 - Distinguish between Express and Rails
 
-##Philosophy
+##Philosophy(5m)
 
 Rails values...
 
@@ -18,13 +18,9 @@ Rails values...
 
 ### Separation of Concerns
 
-In writing a large application it is important to establish something known as **Separation of Concerns**, *writing modular code that focuses on one aspect within the application.* The benefit of this is similar to idea of **compartementalization** with respect to a production line, which allows for *more rapid development* by being able to **divide and conquer** the construction of a product. Comparments can focus on one task and optmize functional concerns far outside the scope of other compartments, but still work together to acheive the same product.  Ultimately it reduces the headache of debugging and controlling a large application that can ultimately grow to a level of complexity that no one person could ever fully comprehend (nor want or need to). 
+In writing a large application it is important to establish something known as **Separation of Concerns**, *writing modular code that focuses on one aspect within the application.* The benefit of this is similar to idea of **compartmentalization** with respect to a production line, which allows for *more rapid development* by being able to **divide and conquer** the construction of a product. 
 
-### Organizational Principles
-
-In order to manage the development of emerging aspects within a project it is important to construct a guideline that will shape how things are separated, a **design pattern**, which everyone can use to maintain **consistent** organization of different aspects. This is a *conventional* choice that helps to understandably scale a project. Part of the role of a developer is to become familiar with using design patterns, but this takes time (and trust), as different patterns emphaize an array of qualities: scalability, modularity, security, performance, et cetera.
-
-##MVC
+##MVC (15m)
 
 Rails uses an __MVC__ architecture
 
@@ -36,155 +32,142 @@ Rails uses an __MVC__ architecture
 
 ![MVC Diagram](http://elibildner.files.wordpress.com/2012/06/screen-shot-2012-06-05-at-2-12-18-am.png)
 
-##Railstaurant Metaphore
-The **client** is a customer eating in the restaurant, the **server** is the waiter, the **router** is waiter who hands off orders, the **controller** is the kitchen, the **database** is the giant walk-in refrigerator with ingredients, the **model** is the person fetching ingredients from the refrigerator, the **view** is the chef who makes the meal look pretty and relays it back to the customer.
+##Railstaurant Metaphor (10m)
+The **client** is a customer eating in the restaurant, **rails** is the kitchen, the **request** is the order made, the **router** is the waiter, the **controller** is a chef, the **model** is a recipe, the **database** is the giant walk-in refrigerator with ingredients, the **view** is plating the dish to look pretty, the **response** with a file is a waiter finally serving the dish to the customer.
 
-##Setup
+##Setup (10m)
 
 ### How to create a rails project
 
-``` rails new NAME_OF_APP```
+`rails new NAME_OF_APP`
 
 But then it says, bundle install at the end, so, it's created all the files, and now it's telling bundler to install all of the gems that might be missing.
-
-### Bundler
-
-Bundler is a separate gem from Rails, and can be used outside of
-Rails, but Rails is going to depend on it to manage the RubyGems that
-our application needs. The first thing that you need to know is that
-there are two files that matter to bundler - Gemfile and Gemfile.lock.
-Look at Gemfile. This contains configuration information about what
-gems we want to load. And, specifically, what version of gems as well.
-This might look similar to the package.json file from our Node/Express
-days.
-
-Bundler is going to sort all of those out for us, and it's going to
-create a tree of gems that it ought to load with all the dependencies
-that ought to be loaded with it. And, after it creates that list, or
-manifest file, it's going to store it in Gemfile.lock. We can take a
-look at that file as well. You'll see, it looks very similar in
-content, but the format is very different.
-
-You never want to edit Gemfile.lock yourself. That's Bundler's file to
-put its results in. Gemfile is the one that you'll edit. Now, how do
-you tell Bundler to take your Gemfile and turn it into Gemfile.lock?
-Well, with one simple command: `bundle install`. You'll remember that
-when we created our rails application at the end of the process, it
-ran Bundle Install for us.
-
-
-bundle exec - run this before rake db:migrate if you're having issues
-
-### Start a server
-
-`rails server`
-
-or the equivalent but shorter:
-
-`rails s`
-
-This will start a server on localhost:3000
-
-## Experiment
-
-- create a new rails app using the flag `-d postgresql`
-- run `rails server` and see what happens
-
-- we need to edit something in our config file! Go to database.yml
-- see that it is using NAMEOFAPP_development so we need to fix that
-- how do we do that? `createdb NAMEOFAPP_development` or `rake db:create`
-
-- when this is done try rails server again and look at the app
 
 ##Gems
 Gems are like NPMs. You have to put any gem you want to use in your Gemfile. You have to run bundle anytime you change your Gemfile. Your rails server needs to be restarted after any changes to your Gemfile.
 
-## Create a controller and view
+### Bundler
 
-- `rails generate controller demo index`
-- add "Hello, World!" in the erb page
+Bundler is a separate gem from Rails, and can be used outside of
+Rails, but Rails is going to depend on it to manage the RubyGems that the application needs. The first thing that you need to know is that there are two files that matter to bundler: `Gemfile` and `Gemfile.lock`. Gemfile contains configuration information about what
+gems are part of our project, it is similar to the `package.json` file in Node.
 
-- now how do we get to this page? What do we need? A route!
-- go to routes.rb see that we have a /demo/index
-- start the server and go to demo/index to see hello world!
+Bundler looks at the `Gemfile` loading all the included gems in addition to each's dependencies. It then generates a manifest file that is stored in Gemfile.lock. **Never** edit Gemfile.lock!
 
-## Rails File Structure
+So how do you tell Bundler to take your Gemfile and turn it into Gemfile.lock? Run: `bundle install`. When we create a rails application it will run this command for us unless we specify otherwise.
+
+## Running Rails (5m)
+
+- Create a new rails app with `rails new railsFun --skip-activerecord`
+    - the last flag tells the application not use activerecord
+    - activerecord is our ORM that manages our Models and our database, we'll learn more about it this afternoon
+- `cd` into your `railsFun` folder and run
+- run `rails server` or just `rails s` and see what happens
+- This will start a server on `localhost:3000` head there and see what it says...
+
+## Rails File Structure (10m)
 
 ![Rails File Structure](http://i.imgur.com/whOL4DQ.png)
 
-- most important directory - APP
-	- models, views, controllers are all in here
-	- helpers is where you put helper code for views
-	- mailers - for sending emails
-	- assets -> where we put static files
-- bin 
-	- bundle, rails, rake our binary files
-- config
-	- set config files for routes, db and environments
-- db
-	- store code related to db - Migrations go here!
-- gemfile/gemfile lock
-- lib 
-- log
-- public - simple html files here (anything here will be visible to the publuc)
-- test for testing
-- tmp - temp files for rails to store stuff
-- vendor - much less used because of gems
+## Routing (10m)
 
-## Routing
+- In routes.rb we write logic to map our paths to controllers we will make.
+- Let's say when a user sends a `GET` request to the root route, `/`, we want the `welcome` controller's `index` method to run. In order to do that we could write:
 
-- in routes.rb we include our routing (very similar to app.js in express)
+route.rb
 
-- simple route or match route
-	- get "demo/index"
-	- the same as match "demo/index", 
-		- :to => "demo#index",
-		- :via => :get
-
-- root route
-
-root :to => 'demo#index'
-or 
-root "demo#index"
-
-- remember, routes in Rails are like express in that they start from the top and go to bottom
-
-## Rendering templates
-
-- in controller add 
-
+```ruby
+get "/" => "welcome#index"`
 ```
-def hello
-  render('hello')
-end
-```
-Always check out the terminal for request/response!
+Try saving the file and heading to your root route. What error do you get?
 
-## Redirect
+**Pro tip:** run `rake route` in your rails app to see a list of all the application's routes
 
-```
-def other_hello
-  redirect_to(:controller =>'demo', :action => 'index')
+## Controllers (10m)
+
+If you did the last step correctly, you should see an error message: `*uninitialized constant WelcomeController*`. This means that we need to create a controller with the name `welcome` as that is where we told our route to go in the first place!
+
+- Run: `rails generate controller welcome`
+
+Reload the page again and find a different error message: `*The action 'index' could not be found for WelcomeController*`. We have created the welcome controller correctly, but there is no `index` method defined. Let's make one:
+
+welcome_controller.rb
+
+```ruby 
+class WelcomeController < ApplicationController
+    def index
+    end
 end
 ```
 
-## Template file names
+Wow another error! `*Missing template welcome/index...*` Since we have a `welcome` controller and an `index` method, Rails automatically will try to render a view with the path `app/views/welcome/index.html.erb`.  A directory `/welcome` should already exist, it was generated when the welcome controller was generated (thanks rails!). Inside of there add the file `index.html.erb` and inside of the file add some html:
 
-name.html.erb
+app/views/welcome/index.html.erb
 
-- Template name: name
-- Process with: ERB
-- Output format: HTML
+```html
+<h1>I make internets with Rails</h1>
+<img src="http://i.giphy.com/SPZFhfUJjsJO0.gif" alt="learning internet" style="width: 300px">
+```
+Checkout out your root route one more time.
 
-## Instance varialbes for data into our views
+## View (5m)
 
-- inside a controller action include
-- `@` infront of a Ruby variable makes it an instance variable
- 
-	```
-	@taco = "Hello instance taco!"
-	@array = [1,2,3]
-	```
-	
-	
-[challenges](https://github.com/sf-wdi-19-20/modules/tree/master/w6_d3_2_intro_to_rails)
+- This will not change the behavior, but you may wish to be more explicit in our controller by stating to `render` the template `index` 
+
+app/controllers/welcome_controller.rb
+
+```ruby
+def index
+  render('index')
+end
+```
+
+Could we change these names to whatever we want? Absolutely!
+
+## ERB (10m)
+
+`.html.erb` files are templates that are processed with embedded ruby, `.erb` to generate an `.html` file. This is known as **server-side templating**. This enables Rails to serve up dynamic views based on the data it is served.
+
+Let's say we want to pass a random number to our view from 0-100... Try adding this to your html:
+
+```html
+<h1>I make internets with Rails</h1>
+<p>Random number is... <%= Random.new.rand(100) %></p>
+<img src="http://i.giphy.com/SPZFhfUJjsJO0.gif" alt="learning internet" style="width: 300px">
+```
+
+Woah, what is happening? Ruby is being evaluated first and the result is printed into our html. the `<%` symbols escape our html. Remember from previous lessons we've seen on templating `<%` will *evaluate* the code while `<%=` will *interpolate* the result.
+
+## Passing Data to our View (10m)
+
+There's certainly some business logic happening in our View. This is bad. Our view should only be concerned with presenting the data, but not actually generating it, that is a violation of **separation of concerns**. To fix this let's move the `Random.new.rand(100)` code to our controller and set that equal to a variable we will pass into our view.
+
+app/controllers/welcome_controller.rb
+
+```ruby
+class WelcomeController < ApplicationController
+  def index
+    @random = Random.new.rand(100)
+    render('index')
+  end
+end
+```
+
+Notice we did not create a variable named `random` instead we created an instance variable named `@random`, the **@** is VERY important. Normal variables' scope do not reach the view, only **instance variables**' scope reach the view.
+
+Finally we can refactor the `welcome/index.html.erb` file so that it will use this new variable.
+
+```html
+<h1>I make internets with Rails</h1>
+<p>Random number is... <%= @random %></p>
+<img src="http://i.giphy.com/SPZFhfUJjsJO0.gif" alt="learning internet" style="width: 300px">
+```
+Wooo, nice1!
+
+##Challenge(15m)
+
+* Create a new route: `/about` that with a `GET` request will hit the controller#action `welcome#about`.
+* Have `welcome#about` render a view in `welcome/about.html.erb`
+* Set a variable equal to your favorite computing language in your `welcome#about` controller, have that variable passed into the view.
+* Your view should now display your favorite language!
+* Bonus: create an array of your favorite languages in your controller. Pass them into your view and iterate through each of them inside a `<ul>`. Create an `<li>` tag for each favorite language.
