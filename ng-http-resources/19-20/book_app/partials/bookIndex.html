@@ -15,7 +15,7 @@
     <p ng-hide="book.editForm">
       <em><a ng-href="/#/books/{{book.id}}">{{book.title}}</a></em> by {{book.author}}
       &nbsp;
-      <a ng-href="javascript:void(0)" ng-click="book.editForm = true">Edit</a>
+      <a ng-href="#" ng-click="book.editForm=true">Edit</a>
     </p>
     <form ng-show="book.editForm" ng-submit="updateBook(book)">
       <div class="form-group">

@@ -155,3 +155,4 @@ Link the `name` of each wine to a view that shows only the details for that wine
 ## Docs & Resources
 
 * <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank">Angular $http</a>
+* Further refactor your code with a [resource](https://docs.angularjs.org/api/ngResource/service/$resource)

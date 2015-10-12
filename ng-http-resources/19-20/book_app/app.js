@@ -13,6 +13,7 @@ angular.module('bookApp', ['ngRoute'])
         redirectTo: '/'
       });
   }])
+  // Books Index
   .controller('BooksCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.books = [];
     $scope.book = {};
@@ -38,7 +39,7 @@ angular.module('bookApp', ['ngRoute'])
         });
     };
   }])
-
+  // Books Show
   .controller('BooksShowCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     $scope.book = "This is the book";
     var bookId = $routeParams.id;
